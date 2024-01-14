@@ -1,1 +1,67 @@
 https://chat.openai.com/share/0dd1da7d-a295-4af2-b6a9-32dad35980c6
+
+TO Hosting website:
+https://www.netlify.com/
+
+
+
+
+
+Certainly! I apologize for any confusion. Let's reorganize the items with a more accurate categorization:
+
+### Front-end Technologies:
+- HTML
+- CSS
+- Sass
+- Bootstrap
+- Tailwind CSS
+- React
+- Angular
+- LWC (Lightning Web Components for Salesforce)
+- Typescript
+- Redux
+
+### Back-end Technologies:
+- NodeJS
+- ExpressJS
+
+### Frameworks:
+- Material UI (UI framework)
+
+### Databases:
+- MySQL
+- MongoDB
+- Redis
+- PostgreSQL
+
+### Version Control and Collaboration:
+- Git
+- GitHub (assumed for version control and collaboration)
+- GitLab
+
+### Containerization and Deployment:
+- Docker
+
+### Salesforce-related:
+- Salesforce (assumed for Salesforce development)
+- Lightning Web Components (LWC)
+
+### Message Broker:
+- Kafka
+
+### Customer Support and Ticketing:
+- Zendesk
+
+### Operating Systems Familiarity:
+- Linux
+- Mac
+- Windows
+
+### General Knowledge:
+- Microservices (architecture pattern)
+
+This categorization is an attempt to group similar technologies and tools together. If you have any additional details or specific corrections, feel free to provide them for a more accurate representation.
+
+
+
+
