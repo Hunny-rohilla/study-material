@@ -1,0 +1,24 @@
+1. Strings are immutable and arrays are mutable
+2. console.log and console.dir
+`console.log` and `console.dir` are both methods available in the JavaScript console for logging information during development. However, they serve slightly different purposes:
+
+1. **`console.log`:**
+   - `console.log` is primarily used for printing messages to the console. It is a general-purpose logging method that accepts any number of arguments and prints them to the console.
+
+   ```javascript
+   console.log('This is a log message.');
+   ```
+
+   - When used with an object or array, `console.log` displays a collapsed view, allowing you to interactively explore the object or array by clicking on the arrow to expand it.
+
+2. **`console.dir`:**
+   - `console.dir` is specifically designed for logging a detailed representation of JavaScript objects. It is used to display the properties of an object in a structured way.
+
+   ```javascript
+   const myObject = { name: 'John', age: 30 };
+   console.dir(myObject);
+   ```
+
+   - `console.dir` is useful when you want to see the detailed structure of an object, especially when it has nested properties.
+
+In summary, while both methods can be used to log information to the console, `console.log` is more general-purpose and is often used for simple logging, including strings and variables. On the other hand, `console.dir` is specifically intended for inspecting the detailed structure of JavaScript objects. The choice between them depends on your specific debugging or logging needs.
