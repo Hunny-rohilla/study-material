@@ -22,3 +22,9 @@
    - `console.dir` is useful when you want to see the detailed structure of an object, especially when it has nested properties.
 
 In summary, while both methods can be used to log information to the console, `console.log` is more general-purpose and is often used for simple logging, including strings and variables. On the other hand, `console.dir` is specifically intended for inspecting the detailed structure of JavaScript objects. The choice between them depends on your specific debugging or logging needs.
+
+
+
+Apna Collage JS video and Notes:
+https://www.youtube.com/watch?v=VlPiVmYuoqw
+https://www.apnacollege.in/notes
