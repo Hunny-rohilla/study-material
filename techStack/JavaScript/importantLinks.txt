@@ -25,6 +25,21 @@ In summary, while both methods can be used to log information to the console, `c
 
 
 
+******************************************************************************************************************
+
+
 Apna Collage JS video and Notes:
+-------------------------------
 https://www.youtube.com/watch?v=VlPiVmYuoqw
 https://www.apnacollege.in/notes
+
+
+******************************************************************************************************************
+
+
+Namste JS Notes:
+----------------
+https://github.com/alok722/namaste-javascript-notes/blob/master/dist/namaste-javascript-notes.pdf
+
+
+******************************************************************************************************************
