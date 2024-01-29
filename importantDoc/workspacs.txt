@@ -1,4 +1,9 @@
 https://chat.openai.com/share/0dd1da7d-a295-4af2-b6a9-32dad35980c6
+prompt: 
+Explain js and also explain their important concept with code. Also provide 60 interview theortical and programing questions with answers related to javascript. Divide questions into three section easy, medium and hard, each section should have at least 20 question and all question should be unique.
+
+new prompt:
+Explain javascript and also explain their important concept with theory and code. Also provide theoretical and programing twenty easy, twenty medium and twenty hard interview questions related to java script, all question should be unique
 
 TO Hosting website:
 https://www.netlify.com/
@@ -62,6 +67,7 @@ Certainly! I apologize for any confusion. Let's reorganize the items with a more
 
 This categorization is an attempt to group similar technologies and tools together. If you have any additional details or specific corrections, feel free to provide them for a more accurate representation.
 
-
-
+****************************************************************************
+tech wise questions and answers
+https://github.com/DopplerHQ/awesome-interview-questions?fbclid=PAAaZ9Qb8JXEp90N79lghr_KZYbNm6S6ZVIr_eJDH1lBboRuGUnOY7eq0FO8k
 
