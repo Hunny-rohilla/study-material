@@ -1,4 +1,5 @@
 https://chat.openai.com/share/0dd1da7d-a295-4af2-b6a9-32dad35980c6
+https://chat.openai.com/c/3b28e073-874b-46f8-a028-d378b7501144
 prompt: 
 Explain js and also explain their important concept with code. Also provide 60 interview theortical and programing questions with answers related to javascript. Divide questions into three section easy, medium and hard, each section should have at least 20 question and all question should be unique.
 
@@ -71,3 +72,4 @@ This categorization is an attempt to group similar technologies and tools togeth
 tech wise questions and answers
 https://github.com/DopplerHQ/awesome-interview-questions?fbclid=PAAaZ9Qb8JXEp90N79lghr_KZYbNm6S6ZVIr_eJDH1lBboRuGUnOY7eq0FO8k
 
+https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/
