@@ -66,7 +66,7 @@ var isHappy = function(n) {
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
 // You can return the answer in any order.
 
-// Example 1:
+// Example:
 // Input: nums = [2,7,11,15], target = 9
 // Output: [0,1]
 // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
@@ -86,3 +86,231 @@ var twoSum = function(nums, target) {
   };
 
 // -------------------------------------------------------------------------------------------
+
+// Problem 4: Longest Common Prefix	Easy	https://leetcode.com/problems/longest-common-prefix/
+// Write a function to find the longest common prefix string amongst an array of strings.
+// If there is no common prefix, return an empty string "".
+
+ 
+// Example:
+// Input: strs = ["flower","flow","flight"]
+// Output: "fl"
+
+// solution: 
+var longestCommonPrefix = function(strs) {
+    if (strs.length === 0) {
+      return "";
+    }
+    strs.sort();
+  
+    const firstStr = strs[0];
+    const lastStr = strs[strs.length - 1];
+    let commonPrefix = "";
+  
+    for (let i = 0; i < firstStr.length; i++) {
+      if (firstStr[i] === lastStr[i]) {
+        commonPrefix += firstStr[i];
+      } else {
+        break;
+      }
+    }
+  
+    return commonPrefix;
+  };
+
+// -------------------------------------------------------------------------------------------
+
+// problem 5: Majority Element	Easy	https://leetcode.com/problems/majority-element/
+// Given an array nums of size n, return the majority element.
+// The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+// Example:
+// Input: nums = [3,2,3]
+// Output: 3
+
+// Solution:
+var majorityElement = function(nums) {
+  const n = nums.length;
+  const count = Math.floor(n/2);
+  const map = {};
+  nums.forEach(val => {
+      if(map[val]) {
+          ++map[val];
+      } else {
+          map[val] = 1;
+      }
+  })
+  for (const e in map) {
+      if(map[e] > count) {
+          return e;
+      }
+  }
+};
+// -------------------------------------------------------------------------------------------
+
+// problem 6: Binary Gap	Easy	https://leetcode.com/problems/binary-gap/
+// Given a positive integer n, find and return the longest distance between any two adjacent 1's in the binary representation of n. If there are no two adjacent 1's, return 0.
+// Two 1's are adjacent if there are only 0's separating them (possibly no 0's). The distance between two 1's is the absolute difference between their bit positions. For example, the two 1's in "1001" have a distance of 3.
+
+// Example:
+// Input: n = 22
+// Output: 2
+// Explanation: 22 in binary is "10110".
+// The first adjacent pair of 1's is "10110" with a distance of 2.
+// The second adjacent pair of 1's is "10110" with a distance of 1.
+// The answer is the largest of these two distances, which is 2.
+// Note that "10110" is not a valid pair since there is a 1 separating the two 1's underlined.
+
+// Solution:
+var binaryGap = function(n) {
+  const binary = n.toString(2).split('');
+  const map = new Map();
+  let currentIndex = 0;
+  let flag = false;
+  binary.forEach((v,i) => {
+      if(v == 1 && !flag) {
+          flag = true;
+          currentIndex = i;
+      }
+      if(v == 1 && flag) {
+          if(map.has("1")){
+              if(map.get("1") < i - currentIndex) {
+                  map.set("1", i - currentIndex);
+              }
+          } else {
+              map.set("1", i - currentIndex);
+          }
+          currentIndex = i;
+      }
+  })
+  if(map.has("1")) {
+      return map.get("1");
+  } else {
+      return 0;
+  }
+};
+
+// -------------------------------------------------------------------------------------------
+
+// Problem 7: Backspace String Compare	Easy	https://leetcode.com/problems/backspace-string-compare/
+// Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+// Note that after backspacing an empty text, the text will continue empty.
+
+// Example:
+// Input: s = "ab#c", t = "ad#c"
+// Output: true
+// Explanation: Both s and t become "ac".
+
+// Solution:
+var backspaceCompare = function(s, t) {
+  const arr1 = s.split(''); 
+  const arr2 = t.split('');
+  const stack = [];
+  const stack2 = [];
+  arr1.forEach((v,i) => {
+      if(v == '#') {
+          stack.pop();
+      } else {
+          stack.push(v);
+      }
+  });
+  arr2.forEach((v,i) => {
+      if(v == '#') {
+          stack2.pop();
+      } else {
+          stack2.push(v);
+      }
+  }) 
+  if (stack.join('') == stack2.join('')) {
+      return true;
+  } else {
+      return false;
+  }
+   
+};
+
+// -------------------------------------------------------------------------------------------
+
+
+// Problem 8: Valid Parentheses	Easy	https://leetcode.com/problems/valid-parentheses/
+// Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+// An input string is valid if:
+// Open brackets must be closed by the same type of brackets.
+// Open brackets must be closed in the correct order.
+// Every close bracket has a corresponding open bracket of the same type.
+ 
+// Example:
+// Input: s = "()"
+// Output: true
+
+// Solution:
+var isValid = function(s) {
+  let arr1 = s.split('');
+  let pattern = ['()','{}','[]']
+  let stack = [];
+  for(let i =0; i< arr1.length; i++) {
+      let s = '';
+      if(arr1[i]== '(' || arr1[i] == '{' || arr1[i]== '[') {
+          stack.push(arr1[i]);
+      }
+      if(arr1[i]== ')' || arr1[i] == '}' || arr1[i]== ']') {
+          let output = stack.pop();
+          s = output + arr1[i];
+          if(!pattern.includes(s)) {
+              return false;
+          }
+      }
+  }
+
+
+  if(stack.length) {
+      return false; 
+  } else {
+      return true;
+  }
+};
+
+// -------------------------------------------------------------------------------------------
+
+// Problem: Symmetric Tree	Easy	https://leetcode.com/problems/symmetric-tree/
+// Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+// Example:
+// Input: root = [1,2,2,3,4,4,3]
+// Output: true
+
+// solution:
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+
+function isMirror(left, right) {
+  if (!left && !right) {
+    return true; // Both subtrees are empty, considered symmetric
+  }
+
+  if (!left || !right || left.val !== right.val) {
+    return false; // One subtree is empty or values don't match, not symmetric
+  }
+
+  // Recursively check the subtrees
+  return isMirror(left.left, right.right) && isMirror(left.right, right.left);
+}
+
+
+var isSymmetric = function(root) {
+    if (!root) {
+        return true; // An empty tree is symmetric
+    }
+
+    return isMirror(root.left, root.right);
+};
