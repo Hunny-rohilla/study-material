@@ -447,7 +447,7 @@ function findMax(arr) {
   }
   return max;
 }
-console.log(findMax(array)); // 6
+console.log(findMax(array2)); // 6
 // using reduce
 const output = arr.reduce((acc, current) => {
   if (current > acc) {

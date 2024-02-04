@@ -314,3 +314,36 @@ var isSymmetric = function(root) {
 
     return isMirror(root.left, root.right);
 };
+
+// -------------------------------------------------------------------------------------------
+
+
+// Problem: Sum Of Square Numbers	Easy	https://leetcode.com/problems/sum-of-square-numbers/
+// Given a non-negative integer c, decide whether there're two integers a and b such that a2 + b2 = c.
+
+// Example :
+// Input: c = 5
+// Output: true
+// Explanation: 1 * 1 + 2 * 2 = 5
+
+// Solution:
+var judgeSquareSum = function(c) {
+    let low = 0; 
+    let high = Math.ceil(Math.sqrt(c));
+
+    while (low <= high) {
+        const sum = low**2 + high**2;
+        const mid = Math.floor(low + (high - low) / 2);
+        if(c > sum) {
+            low = c > mid**2 + high**2 ? mid+1: low+1;
+        } else if(c < sum) {
+            high = c < mid**2 + low**2 ? mid-1 : high-1;
+        } else {
+            return true;
+        }
+    }
+    
+    return false;
+};
+
+// -------------------------------------------------------------------------------------------
