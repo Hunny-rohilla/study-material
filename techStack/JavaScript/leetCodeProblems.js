@@ -471,3 +471,47 @@ MinStack.prototype.getMin = function () {
 };
 
 // -------------------------------------------------------------------------------------------
+
+// Problem: 14 Maximun Subarray	Easy	https://leetcode.com/problems/maximum-subarray
+// Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+// Example :
+// Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+// Output: 6
+// Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+
+// Solution:
+var maxSubArray = function(nums) {
+  if(!nums.length) return 0
+  if(nums.length ==1) return nums[0]
+  let msf = -987654329876543;
+  let maxTill = 0;
+  for(let i=0; i< nums.length; i++){
+      maxTill = maxTill + nums[i];
+      msf = msf > maxTill ? msf : maxTill;
+      if(maxTill<0){
+          maxTill = 0;
+      }
+  }
+  return msf;
+};
+
+// -------------------------------------------------------------------------------------------
+
+// Problem 15: Number of Segments in a String	Easy	https://leetcode.com/problems/number-of-segments-in-a-string/
+// Given a string s, return the number of segments in the string.
+// A segment is defined to be a contiguous sequence of non-space characters.
+
+// Example:
+// Input: s = "Hello, my name is John"
+// Output: 5
+// Explanation: The five segments are ["Hello,", "my", "name", "is", "John"]
+
+// Solution: 
+var countSegments = function(s) {
+  const arr = s.trim().split(" ");
+  const sum = arr.reduce((acc, val) => val.trim().length ? ++acc : acc,0);
+  return sum;
+};
+
+// -------------------------------------------------------------------------------------------
