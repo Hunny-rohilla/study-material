@@ -515,3 +515,66 @@ var countSegments = function(s) {
 };
 
 // -------------------------------------------------------------------------------------------
+
+// Problem 16: Flood Fill	Easy	https://leetcode.com/problems/flood-fill/
+// An image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
+// You are also given three integers sr, sc, and color. You should perform a flood fill on the image starting from the pixel image[sr][sc].
+
+// Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
+// Output: [[2,2,2],[2,2,0],[2,0,1]]
+// Explanation: From the center of the image with position (sr, sc) = (1, 1) (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color.
+// Note the bottom corner is not colored 2, because it is not 4-directionally connected to the starting pixel.
+
+// Solution:
+function recursion(image, sr, sc, color,target) {
+  if(image[sr][sc] == color) {
+      return image;
+  }
+  if(image[sr][sc] == target) {
+      image[sr][sc] = color;
+  }
+  let cordinate = [[sr-1,sc],[sr+1,sc],[sr,sc-1],[sr,sc+1]];
+
+  for(let i=0; i<cordinate.length;i++) {
+      if(cordinate[i][0]<0 || cordinate[i][1]<0 || cordinate[i][0] >= image.length || cordinate[i][1]>=image[0].length) {
+          continue;
+      }
+      if(image[cordinate[i][0]][cordinate[i][1]] == target) {
+          recursion(image,cordinate[i][0],cordinate[i][1],color,target);
+      }
+  }
+}
+
+var floodFill = function(image, sr, sc, color) {
+  const target = image[sr][sc];
+  recursion(image, sr, sc, color,target)
+ 
+  return image;
+};
+
+// -------------------------------------------------------------------------------------------
+
+// Problem: 17 K Closest Points to Origin	Medium	https://leetcode.com/problems/k-closest-points-to-origin/
+// Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin (0, 0).
+// The distance between two points on the X-Y plane is the Euclidean distance (i.e., √(x1 - x2)2 + (y1 - y2)2).
+// You may return the answer in any order. The answer is guaranteed to be unique (except for the order that it is in).
+
+// Solution:
+var kClosest = function(points, k) {
+  let dis = [];
+  let copyDis = [];
+  let res = [];
+  for(let item of points) {
+      const val = Math.sqrt(item[0]**2 + item[1]**2);
+      dis.push(val);
+      copyDis.push(val);
+  }
+  copyDis.sort((a,b)=>a-b);
+  for(let i=0; i< k; i++) {
+      let index = dis.indexOf(copyDis[i]);
+      res.push(points[index]);
+      dis[index] = null;
+  }
+
+  return res;
+};
