@@ -623,3 +623,121 @@ var canCompleteCircuit = function(gas, cost) {
 
 
 // -------------------------------------------------------------------------------------------
+
+
+// Problem: 19 Top K Frequent Elements	Medium	https://leetcode.com/problems/top-k-frequent-elements/
+// Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+// Example:
+// Input: nums = [1,1,1,2,2,3], k = 2
+// Output: [1,2]
+
+// Solution: 
+var topKFrequent = function(nums, k) {
+  let arr = []
+  nums.sort((a,b)=>a-b);
+  let ele = nums[0];
+  let map = {};
+  map[ele] = 1;
+  for(let i=1; i<nums.length;i++) {        
+      if(map[nums[i]]) {
+          ++map[nums[i]];
+      } else {
+          map[nums[i]] = 1;
+      }
+  }
+
+  for(let key in map) {
+      arr.push([key,map[key]]);
+  }
+  arr.sort((a,b)=>b[1]-a[1]);
+
+  let result = [];
+  for(let j=0;j<k;j++) {
+      result.push(arr[j][0]);
+  }
+
+  return result;
+};
+
+
+// -------------------------------------------------------------------------------------------
+
+
+// Problem: 20 Minimize Maximum Pair Sum in Array	Medium	https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
+
+// The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs.
+// For example, if we have pairs (1,5), (2,3), and (4,4), the maximum pair sum would be max(1+5, 2+3, 4+4) = max(6, 5, 8) = 8.
+// Given an array nums of even length n, pair up the elements of nums into n / 2 pairs such that:
+// Each element of nums is in exactly one pair, and
+// The maximum pair sum is minimized.
+// Return the minimized maximum pair sum after optimally pairing up the elements.
+
+// Example :
+// Input: nums = [3,5,2,3]
+// Output: 7
+// Explanation: The elements can be paired up into pairs (3,3) and (5,2).
+// The maximum pair sum is max(3+3, 5+2) = max(6, 7) = 7.
+
+// Solution:
+var minPairSum = function(nums) {
+  nums.sort((a,b)=>a-b);
+  let max = 0; 
+  for(let i=0; i < nums.length/2; i++) {
+      if(max < nums[i] + nums[nums.length - i - 1]) {
+          max = nums[i] + nums[nums.length - i -1];
+      }
+  }
+  return max;
+};
+
+
+// -------------------------------------------------------------------------------------------
+
+
+// Problem: 21 Reverse Integer	Medium	https://leetcode.com/problems/reverse-integer/
+// Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+// Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+// Example:
+// Input: x = 123
+// Output: 321
+
+// Solution:
+var reverse = function(x) {
+  let n = Math.abs(x);
+  let result = 0;
+  while(n !== 0){
+      result = result*10 + n%10; 
+      n = Math.floor(n/10);
+  }
+
+  return result.toString(2).length>31 ? 0 : x < 0 ? -result: result;
+};
+
+// -------------------------------------------------------------------------------------------
+
+// Problem: 22 Find Subarrays With Equal Sum	Medium	https://leetcode.com/problems/find-subarrays-with-equal-sum/
+// Given a 0-indexed integer array nums, determine whether there exist two subarrays of length 2 with equal sum. Note that the two subarrays must begin at different indices.
+// Return true if these subarrays exist, and false otherwise.
+// A subarray is a contiguous non-empty sequence of elements within an array.
+
+// Example:
+// Input: nums = [4,2,4]
+// Output: true
+// Explanation: The subarrays with elements [4,2] and [2,4] have the same sum of 6.
+
+// Solution:
+var findSubarrays = function(nums) {
+  let arr= [];
+  for(let i = 0; i<nums.length-1;i++) {
+      let sum = nums[i]+nums[i+1];
+      if(arr.includes(sum)) {
+          return true;
+      }
+      arr.push(sum);
+  }
+  return false;
+};
+
+// -------------------------------------------------------------------------------------------
