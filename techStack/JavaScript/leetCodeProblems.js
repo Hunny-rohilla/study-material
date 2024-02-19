@@ -741,3 +741,84 @@ var findSubarrays = function(nums) {
 };
 
 // -------------------------------------------------------------------------------------------
+
+// Problem: 23 Time Needed to Rearrange a Binary String	Medium	https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
+// You are given a binary string s. In one second, all occurrences of "01" are simultaneously replaced with "10". This process repeats until no occurrences of "01" exist.
+// Return the number of seconds needed to complete this process.
+
+// Example :
+// Input: s = "0110101"
+// Output: 4
+// Explanation: 
+// After one second, s becomes "1011010".
+// After another second, s becomes "1101100".
+// After the third second, s becomes "1110100".
+// After the fourth second, s becomes "1111000".
+// No occurrence of "01" exists any longer, and the process needed 4 seconds to complete,
+// so we return 4.
+
+// Solution:
+var secondsToRemoveOccurrences = function(s) {
+  let count =0;
+  while(s.includes("01")){
+      s = s.replace(new RegExp('01', 'g'), '10');
+      count++;
+  }
+  return count;
+};
+
+const secondsToRemoveOccurrences = function (s) {
+  const n = s.length
+  let zeros = 0; let seconds = 0
+  for (let i = 0; i < n; ++i) {
+    zeros += s.charAt(i) == '0' ? 1 : 0
+    if (s.charAt(i) == '1' && zeros > 0) { seconds = Math.max(seconds + 1, zeros) }
+  }
+  return seconds
+}
+
+
+// -------------------------------------------------------------------------------------------
+
+// Problem: 24 Next Permutation	Medium	https://leetcode.com/problems/next-permutation/
+// A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
+// For example, for arr = [1,2,3], the following are all the permutations of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
+// The next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
+// For example, the next permutation of arr = [1,2,3] is [1,3,2].
+// Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
+// While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical larger rearrangement.
+// Given an array of integers nums, find the next permutation of nums.
+// The replacement must be in place and use only constant extra memory.
+
+// Example 1
+// Input: nums = [1,2,3]
+// Output: [1,3,2]
+
+// Solution:
+function reverseArray(arr, start) {
+  let end = arr.length - 1;
+  while (start < end) {
+      [arr[start], arr[end]] = [arr[end], arr[start]];
+      start++;
+      end--;
+  }
+}
+var nextPermutation = function(nums) {
+  let i = nums.length - 2;
+  while (i >= 0 && nums[i] >= nums[i + 1]) {
+      i--;
+  }
+  
+
+  if (i >= 0) {
+      let j = nums.length - 1;
+      while (nums[j] <= nums[i]) {
+          j--;
+      }
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+  }
+
+  reverseArray(nums, i + 1);
+};
+
+
