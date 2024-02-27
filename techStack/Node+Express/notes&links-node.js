@@ -82,26 +82,3 @@ const fetchData = () => {
 fetchData()
   .then((data) => console.log(data))
   .catch((error) => console.error(error));
-
-// ### Interview Questions:
-
-// #### Easy:
-// 1. What is Node.js?
-// 2. Explain the event loop in Node.js.
-// 3. How do you include external modules in Node.js?
-// 4. What is npm? How is it used in Node.js?
-// 5. What is the purpose of the `fs` module in Node.js?
-
-// #### Medium:
-// 6. Describe the concept of middleware in Express.js.
-// 7. What is the purpose of the `process` object in Node.js?
-// 8. How does error handling work in Node.js asynchronous code?
-// 9. Explain the role of the `require` function in Node.js.
-// 10. What is the difference between `process.nextTick` and `setImmediate`?
-
-// #### Hard:
-// 11. Discuss the differences between child_process.spawn and child_process.fork.
-// 12. Explain the concept of the Node.js event emitter.
-// 13. How does clustering work in Node.js? When is it beneficial?
-// 14. Discuss the role of the `Buffer` class in Node.js.
-// 15. Explain the purpose of the `cluster` module in Node.js.
