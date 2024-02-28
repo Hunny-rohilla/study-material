@@ -481,17 +481,17 @@ MinStack.prototype.getMin = function () {
 // Explanation: The subarray [4,-1,2,1] has the largest sum 6.
 
 // Solution:
-var maxSubArray = function(nums) {
-  if(!nums.length) return 0
-  if(nums.length ==1) return nums[0]
+var maxSubArray = function (nums) {
+  if (!nums.length) return 0;
+  if (nums.length == 1) return nums[0];
   let msf = -987654329876543;
   let maxTill = 0;
-  for(let i=0; i< nums.length; i++){
-      maxTill = maxTill + nums[i];
-      msf = msf > maxTill ? msf : maxTill;
-      if(maxTill<0){
-          maxTill = 0;
-      }
+  for (let i = 0; i < nums.length; i++) {
+    maxTill = maxTill + nums[i];
+    msf = msf > maxTill ? msf : maxTill;
+    if (maxTill < 0) {
+      maxTill = 0;
+    }
   }
   return msf;
 };
@@ -507,10 +507,10 @@ var maxSubArray = function(nums) {
 // Output: 5
 // Explanation: The five segments are ["Hello,", "my", "name", "is", "John"]
 
-// Solution: 
-var countSegments = function(s) {
+// Solution:
+var countSegments = function (s) {
   const arr = s.trim().split(" ");
-  const sum = arr.reduce((acc, val) => val.trim().length ? ++acc : acc,0);
+  const sum = arr.reduce((acc, val) => (val.trim().length ? ++acc : acc), 0);
   return sum;
 };
 
@@ -526,29 +526,39 @@ var countSegments = function(s) {
 // Note the bottom corner is not colored 2, because it is not 4-directionally connected to the starting pixel.
 
 // Solution:
-function recursion(image, sr, sc, color,target) {
-  if(image[sr][sc] == color) {
-      return image;
+function recursion(image, sr, sc, color, target) {
+  if (image[sr][sc] == color) {
+    return image;
   }
-  if(image[sr][sc] == target) {
-      image[sr][sc] = color;
+  if (image[sr][sc] == target) {
+    image[sr][sc] = color;
   }
-  let cordinate = [[sr-1,sc],[sr+1,sc],[sr,sc-1],[sr,sc+1]];
+  let cordinate = [
+    [sr - 1, sc],
+    [sr + 1, sc],
+    [sr, sc - 1],
+    [sr, sc + 1],
+  ];
 
-  for(let i=0; i<cordinate.length;i++) {
-      if(cordinate[i][0]<0 || cordinate[i][1]<0 || cordinate[i][0] >= image.length || cordinate[i][1]>=image[0].length) {
-          continue;
-      }
-      if(image[cordinate[i][0]][cordinate[i][1]] == target) {
-          recursion(image,cordinate[i][0],cordinate[i][1],color,target);
-      }
+  for (let i = 0; i < cordinate.length; i++) {
+    if (
+      cordinate[i][0] < 0 ||
+      cordinate[i][1] < 0 ||
+      cordinate[i][0] >= image.length ||
+      cordinate[i][1] >= image[0].length
+    ) {
+      continue;
+    }
+    if (image[cordinate[i][0]][cordinate[i][1]] == target) {
+      recursion(image, cordinate[i][0], cordinate[i][1], color, target);
+    }
   }
 }
 
-var floodFill = function(image, sr, sc, color) {
+var floodFill = function (image, sr, sc, color) {
   const target = image[sr][sc];
-  recursion(image, sr, sc, color,target)
- 
+  recursion(image, sr, sc, color, target);
+
   return image;
 };
 
@@ -560,27 +570,26 @@ var floodFill = function(image, sr, sc, color) {
 // You may return the answer in any order. The answer is guaranteed to be unique (except for the order that it is in).
 
 // Solution:
-var kClosest = function(points, k) {
+var kClosest = function (points, k) {
   let dis = [];
   let copyDis = [];
   let res = [];
-  for(let item of points) {
-      const val = Math.sqrt(item[0]**2 + item[1]**2);
-      dis.push(val);
-      copyDis.push(val);
+  for (let item of points) {
+    const val = Math.sqrt(item[0] ** 2 + item[1] ** 2);
+    dis.push(val);
+    copyDis.push(val);
   }
-  copyDis.sort((a,b)=>a-b);
-  for(let i=0; i< k; i++) {
-      let index = dis.indexOf(copyDis[i]);
-      res.push(points[index]);
-      dis[index] = null;
+  copyDis.sort((a, b) => a - b);
+  for (let i = 0; i < k; i++) {
+    let index = dis.indexOf(copyDis[i]);
+    res.push(points[index]);
+    dis[index] = null;
   }
 
   return res;
 };
 
 // -------------------------------------------------------------------------------------------
-
 
 // Problem: 18 Gas Station	Medium	https://leetcode.com/problems/gas-station/description/
 // There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].
@@ -600,30 +609,28 @@ var kClosest = function(points, k) {
 // Therefore, return 3 as the starting index.
 
 // Solution:
-var canCompleteCircuit = function(gas, cost) {
+var canCompleteCircuit = function (gas, cost) {
   let curr = 0;
-  let index = 0
-  let sum = 0
-  for(let i=0; i<gas.length; i++) {
-      let val = gas[i] - cost[i];
-      sum += val;
-      curr += val;
-      if(curr < 0) {
-        index = i+1;
-        curr = 0;  
-      }
+  let index = 0;
+  let sum = 0;
+  for (let i = 0; i < gas.length; i++) {
+    let val = gas[i] - cost[i];
+    sum += val;
+    curr += val;
+    if (curr < 0) {
+      index = i + 1;
+      curr = 0;
+    }
   }
 
-  if (sum<0) {
-      return -1;
+  if (sum < 0) {
+    return -1;
   }
 
   return index;
 };
 
-
 // -------------------------------------------------------------------------------------------
-
 
 // Problem: 19 Top K Frequent Elements	Medium	https://leetcode.com/problems/top-k-frequent-elements/
 // Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
@@ -632,37 +639,35 @@ var canCompleteCircuit = function(gas, cost) {
 // Input: nums = [1,1,1,2,2,3], k = 2
 // Output: [1,2]
 
-// Solution: 
-var topKFrequent = function(nums, k) {
-  let arr = []
-  nums.sort((a,b)=>a-b);
+// Solution:
+var topKFrequent = function (nums, k) {
+  let arr = [];
+  nums.sort((a, b) => a - b);
   let ele = nums[0];
   let map = {};
   map[ele] = 1;
-  for(let i=1; i<nums.length;i++) {        
-      if(map[nums[i]]) {
-          ++map[nums[i]];
-      } else {
-          map[nums[i]] = 1;
-      }
+  for (let i = 1; i < nums.length; i++) {
+    if (map[nums[i]]) {
+      ++map[nums[i]];
+    } else {
+      map[nums[i]] = 1;
+    }
   }
 
-  for(let key in map) {
-      arr.push([key,map[key]]);
+  for (let key in map) {
+    arr.push([key, map[key]]);
   }
-  arr.sort((a,b)=>b[1]-a[1]);
+  arr.sort((a, b) => b[1] - a[1]);
 
   let result = [];
-  for(let j=0;j<k;j++) {
-      result.push(arr[j][0]);
+  for (let j = 0; j < k; j++) {
+    result.push(arr[j][0]);
   }
 
   return result;
 };
 
-
 // -------------------------------------------------------------------------------------------
-
 
 // Problem: 20 Minimize Maximum Pair Sum in Array	Medium	https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
 
@@ -680,20 +685,18 @@ var topKFrequent = function(nums, k) {
 // The maximum pair sum is max(3+3, 5+2) = max(6, 7) = 7.
 
 // Solution:
-var minPairSum = function(nums) {
-  nums.sort((a,b)=>a-b);
-  let max = 0; 
-  for(let i=0; i < nums.length/2; i++) {
-      if(max < nums[i] + nums[nums.length - i - 1]) {
-          max = nums[i] + nums[nums.length - i -1];
-      }
+var minPairSum = function (nums) {
+  nums.sort((a, b) => a - b);
+  let max = 0;
+  for (let i = 0; i < nums.length / 2; i++) {
+    if (max < nums[i] + nums[nums.length - i - 1]) {
+      max = nums[i] + nums[nums.length - i - 1];
+    }
   }
   return max;
 };
 
-
 // -------------------------------------------------------------------------------------------
-
 
 // Problem: 21 Reverse Integer	Medium	https://leetcode.com/problems/reverse-integer/
 // Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
@@ -704,15 +707,15 @@ var minPairSum = function(nums) {
 // Output: 321
 
 // Solution:
-var reverse = function(x) {
+var reverse = function (x) {
   let n = Math.abs(x);
   let result = 0;
-  while(n !== 0){
-      result = result*10 + n%10; 
-      n = Math.floor(n/10);
+  while (n !== 0) {
+    result = result * 10 + (n % 10);
+    n = Math.floor(n / 10);
   }
 
-  return result.toString(2).length>31 ? 0 : x < 0 ? -result: result;
+  return result.toString(2).length > 31 ? 0 : x < 0 ? -result : result;
 };
 
 // -------------------------------------------------------------------------------------------
@@ -728,14 +731,14 @@ var reverse = function(x) {
 // Explanation: The subarrays with elements [4,2] and [2,4] have the same sum of 6.
 
 // Solution:
-var findSubarrays = function(nums) {
-  let arr= [];
-  for(let i = 0; i<nums.length-1;i++) {
-      let sum = nums[i]+nums[i+1];
-      if(arr.includes(sum)) {
-          return true;
-      }
-      arr.push(sum);
+var findSubarrays = function (nums) {
+  let arr = [];
+  for (let i = 0; i < nums.length - 1; i++) {
+    let sum = nums[i] + nums[i + 1];
+    if (arr.includes(sum)) {
+      return true;
+    }
+    arr.push(sum);
   }
   return false;
 };
@@ -749,7 +752,7 @@ var findSubarrays = function(nums) {
 // Example :
 // Input: s = "0110101"
 // Output: 4
-// Explanation: 
+// Explanation:
 // After one second, s becomes "1011010".
 // After another second, s becomes "1101100".
 // After the third second, s becomes "1110100".
@@ -758,25 +761,27 @@ var findSubarrays = function(nums) {
 // so we return 4.
 
 // Solution:
-var secondsToRemoveOccurrences = function(s) {
-  let count =0;
-  while(s.includes("01")){
-      s = s.replace(new RegExp('01', 'g'), '10');
-      count++;
+var secondsToRemoveOccurrences = function (s) {
+  let count = 0;
+  while (s.includes("01")) {
+    s = s.replace(new RegExp("01", "g"), "10");
+    count++;
   }
   return count;
 };
 
 const secondsToRemoveOccurrences = function (s) {
-  const n = s.length
-  let zeros = 0; let seconds = 0
+  const n = s.length;
+  let zeros = 0;
+  let seconds = 0;
   for (let i = 0; i < n; ++i) {
-    zeros += s.charAt(i) == '0' ? 1 : 0
-    if (s.charAt(i) == '1' && zeros > 0) { seconds = Math.max(seconds + 1, zeros) }
+    zeros += s.charAt(i) == "0" ? 1 : 0;
+    if (s.charAt(i) == "1" && zeros > 0) {
+      seconds = Math.max(seconds + 1, zeros);
+    }
   }
-  return seconds
-}
-
+  return seconds;
+};
 
 // -------------------------------------------------------------------------------------------
 
@@ -798,27 +803,65 @@ const secondsToRemoveOccurrences = function (s) {
 function reverseArray(arr, start) {
   let end = arr.length - 1;
   while (start < end) {
-      [arr[start], arr[end]] = [arr[end], arr[start]];
-      start++;
-      end--;
+    [arr[start], arr[end]] = [arr[end], arr[start]];
+    start++;
+    end--;
   }
 }
-var nextPermutation = function(nums) {
+var nextPermutation = function (nums) {
   let i = nums.length - 2;
   while (i >= 0 && nums[i] >= nums[i + 1]) {
-      i--;
+    i--;
   }
-  
 
   if (i >= 0) {
-      let j = nums.length - 1;
-      while (nums[j] <= nums[i]) {
-          j--;
-      }
-      [nums[i], nums[j]] = [nums[j], nums[i]];
+    let j = nums.length - 1;
+    while (nums[j] <= nums[i]) {
+      j--;
+    }
+    [nums[i], nums[j]] = [nums[j], nums[i]];
   }
 
   reverseArray(nums, i + 1);
 };
 
+// -------------------------------------------------------------------------------------------
 
+// Problem: 25 Maximum Sum of an Hourglass	Medium	https://leetcode.com/problems/maximum-sum-of-an-hourglass/
+
+// You are given an m x n integer matrix grid.
+// We define an hourglass as a part of the matrix with the following form:
+// Return the maximum sum of the elements of an hourglass.
+// Note that an hourglass cannot be rotated and must be entirely contained within the matrix.
+
+// Example 1:
+// Input: grid = [[6,2,1,3],[4,2,1,5],[9,2,8,7],[4,1,2,9]]
+// Output: 30
+// Explanation: The cells shown above represent the hourglass with the maximum sum: 6 + 2 + 1 + 2 + 9 + 2 + 8 = 30.
+
+// Solution:
+var maxSum = function (grid) {
+  const row = grid.length;
+  const col = grid[0].length;
+  let sum = 0;
+  let maxSoFar = 0;
+  for (let i = 0; i < row - 2; i++) {
+    for (let j = 1; j < col - 1; j++) {
+      sum =
+        grid[i][j - 1] +
+        grid[i][j] +
+        grid[i][j + 1] +
+        grid[i + 1][j] +
+        grid[i + 2][j - 1] +
+        grid[i + 2][j] +
+        grid[i + 2][j + 1];
+      maxSoFar = Math.max(maxSoFar, sum);
+    }
+  }
+
+  return maxSoFar;
+};
+
+// -------------------------------------------------------------------------------------------
+
+// Problem: 26
