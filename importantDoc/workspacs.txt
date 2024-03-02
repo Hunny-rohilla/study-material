@@ -10,7 +10,7 @@ TO Hosting website:
 https://www.netlify.com/
 
 
-
+****************************************************************************
 
 
 Certainly! I apologize for any confusion. Let's reorganize the items with a more accurate categorization:
@@ -68,10 +68,23 @@ Certainly! I apologize for any confusion. Let's reorganize the items with a more
 
 This categorization is an attempt to group similar technologies and tools together. If you have any additional details or specific corrections, feel free to provide them for a more accurate representation.
 
+
 ****************************************************************************
+
+
 tech wise questions and answers
 https://github.com/DopplerHQ/awesome-interview-questions?fbclid=PAAaZ9Qb8JXEp90N79lghr_KZYbNm6S6ZVIr_eJDH1lBboRuGUnOY7eq0FO8k
 
 https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/
 
 https://neetcode.io/roadmap
+
+
+****************************************************************************
+
+
+Important interview and preparation related youtube channel
+https://www.youtube.com/@interviewhappy
+https://www.youtube.com/@Turingcom/playlists
+https://www.youtube.com/@amandeepbindra_com/videos
+https://www.youtube.com/@codeforinterview/playlists

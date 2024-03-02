@@ -1,6 +1,20 @@
 // Node js coevolution Link:
 // https://www.youtube.com/watch?v=LAUi8pPlcUM&list=PLC3y8-rFHvwh8shCMHFA5kWxD9PaPwxaY
 
+// Interview Question
+// https://www.youtube.com/watch?v=Vdpx-9Oehdk
+
+// ExpressJs notes handbook pdf
+// https://lcc.lt/assets/pdf_files/express-handbook.pdf
+
+// Express interview questions:
+// Part 1: https://www.youtube.com/watch?v=dm1KKSOrA54
+// Part 2: https://www.youtube.com/watch?v=mljhoW4qlEE
+
+// ==========================================================================================
+
+
+
 // node command to run js file in node enviorment on file save
 // **node --watch file_name**
 
