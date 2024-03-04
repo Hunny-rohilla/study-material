@@ -864,4 +864,48 @@ var maxSum = function (grid) {
 
 // -------------------------------------------------------------------------------------------
 
-// Problem: 26
+// Problem: 26 Excel Sheet Column Number https://leetcode.com/problems/excel-sheet-column-number
+// Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
+
+// For example:
+// A -> 1
+// B -> 2
+// C -> 3
+// Z -> 26
+// AA -> 27
+// AB -> 28 
+
+// Example 1:
+// Input: columnTitle = "A"
+// Output: 1
+// Example 2:
+// Input: columnTitle = "AB"
+// Output: 28
+// Example 3:
+// Input: columnTitle = "ZY"
+// Output: 701
+
+// Solution:
+var titleToNumber = function(columnTitle) {
+  let col = 0;
+  let j = 0;
+
+  for(let i=0;i<columnTitle.length;i++) {
+       let charCode = columnTitle[i].charCodeAt(0) - 64;
+       col = col * 26 + charCode;
+  }
+  return col;
+
+
+
+  // for(let i=columnTitle.length-1;i>=0;i--) {
+  //     let charCode = columnTitle[i].charCodeAt(0) - 64;
+  //     if(j == 0) {
+  //         col += charCode;
+  //     } else {
+  //         col+= Math.pow(26,j) * charCode;
+  //     }
+  //     ++j; 
+  // }
+  // return col;
+};
