@@ -873,7 +873,7 @@ var maxSum = function (grid) {
 // C -> 3
 // Z -> 26
 // AA -> 27
-// AB -> 28 
+// AB -> 28
 
 // Example 1:
 // Input: columnTitle = "A"
@@ -886,17 +886,15 @@ var maxSum = function (grid) {
 // Output: 701
 
 // Solution:
-var titleToNumber = function(columnTitle) {
+var titleToNumber = function (columnTitle) {
   let col = 0;
   let j = 0;
 
-  for(let i=0;i<columnTitle.length;i++) {
-       let charCode = columnTitle[i].charCodeAt(0) - 64;
-       col = col * 26 + charCode;
+  for (let i = 0; i < columnTitle.length; i++) {
+    let charCode = columnTitle[i].charCodeAt(0) - 64;
+    col = col * 26 + charCode;
   }
   return col;
-
-
 
   // for(let i=columnTitle.length-1;i>=0;i--) {
   //     let charCode = columnTitle[i].charCodeAt(0) - 64;
@@ -905,7 +903,7 @@ var titleToNumber = function(columnTitle) {
   //     } else {
   //         col+= Math.pow(26,j) * charCode;
   //     }
-  //     ++j; 
+  //     ++j;
   // }
   // return col;
 };
@@ -933,30 +931,90 @@ var titleToNumber = function(columnTitle) {
 //   ["0","0","0","1","1"]
 // ]
 // Output: 3
- 
+
 // Solution:
-function eraseTree(arr,i,j) {
-  if( i < 0 || j < 0 || i >= arr.length || j>=arr[0].length || arr[i][j] === '0') return;
-  arr[i][j] = '0';
-  eraseTree(arr,i,j+1);
-  eraseTree(arr,i,j-1);
-  eraseTree(arr,i+1,j);
-  eraseTree(arr,i-1,j);
+function eraseTree(arr, i, j) {
+  if (
+    i < 0 ||
+    j < 0 ||
+    i >= arr.length ||
+    j >= arr[0].length ||
+    arr[i][j] === "0"
+  )
+    return;
+  arr[i][j] = "0";
+  eraseTree(arr, i, j + 1);
+  eraseTree(arr, i, j - 1);
+  eraseTree(arr, i + 1, j);
+  eraseTree(arr, i - 1, j);
 }
 
-var numIslands = function(grid) {
+var numIslands = function (grid) {
   const r = grid.length;
-  const c = grid [0].length;
-  let count = 0; 
-  for(let i=0; i<r; i++) {
-      for(j=0; j<c; j++) {
-          if(grid[i][j] == '1') {
-              count++;
-              eraseTree(grid,i,j);
-          }
+  const c = grid[0].length;
+  let count = 0;
+  for (let i = 0; i < r; i++) {
+    for (j = 0; j < c; j++) {
+      if (grid[i][j] == "1") {
+        count++;
+        eraseTree(grid, i, j);
       }
+    }
   }
   return count;
 };
+
+// -------------------------------------------------------------------------------------------
+
+// Problem: 28 || 125. Valid Palindrome || https://leetcode.com/problems/valid-palindrome
+// A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+// Given a string s, return true if it is a palindrome, or false otherwise.
+
+// Example 1:
+// Input: s = "A man, a plan, a canal: Panama"
+// Output: true
+// Explanation: "amanaplanacanalpanama" is a palindrome.
+
+// Solution:
+
+var isPalindrome = function (s) {
+  let lcs = s.toLowerCase();
+  let ns = "";
+  let rs = "";
+  for (let i = 0; i < lcs.length; i++) {
+    let asciiCode = lcs[i].charCodeAt(0);
+    if (
+      (asciiCode >= 97 && asciiCode <= 122) ||
+      (lcs[i] >= "0" && lcs[i] <= "9")
+    ) {
+      ns = ns + lcs[i];
+      rs = lcs[i] + rs;
+    }
+  }
+  console.log(ns, "-----", rs);
+  if (ns === rs) return true;
+  return false;
+};
+
+// ----------------------------------
+
+var isPalindrome = function (s) {
+  s = s.replace(/[\W_]/g, "").toLowerCase();
+
+  let left = 0;
+  let right = s.length - 1;
+
+  while (right >= left) {
+    if (s[left] !== s[right]) {
+      return false;
+    }
+
+    right--;
+    left++;
+  }
+
+  return true;
+};
+
 
 // -------------------------------------------------------------------------------------------
