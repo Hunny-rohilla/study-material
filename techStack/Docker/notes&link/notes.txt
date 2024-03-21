@@ -1,0 +1,56 @@
+Youtube links:
+https://youtu.be/31k6AtW-b3Y?si=CHGgKjEe5wsjqrSe
+https://www.youtube.com/watch?v=zCsbp_iBTq8&list=PLinedj3B30sDvBfeK9EPz9pcJNlM0f3ph&pp=iAQB
+
+------------------------------------------------------------------------------------------------
+refrence:
+https://www.interviewbit.com/docker-interview-questions/
+ 
+Introduction to Docker:
+----------------------------------------------------------------
+Docker is a very popular and powerful open-source containerization platform that is used for building, deploying, and running applications. Docker allows you to decouple the application/software from the underlying infrastructure.
+
+What is a Container?
+---------------------
+A container is a standard unit of software bundled with dependencies so that applications can be deployed fast and reliably b/w different computing platforms.
+
+-> Docker can be visualized as a big ship (docker) carrying huge boxes of products (containers).
+-> Docker container doesn’t require the installation of a separate operating system. Docker just relies or makes use of the kernel’s resources and its functionality to allocate them for the CPU and memory it relies on the kernel’s functionality and uses resource isolation for CPU and memory, and separate namespaces to isolate the application’s view of the OS (operating system).
+
+Why Learn Docker?
+---------------------
+Application development is a complex process that goes beyond coding, involving the use of multiple frameworks and architectures across different stages of the development lifecycle. Containerization is a key strategy that simplifies and speeds up application workflows, allowing developers to use their preferred technologies and environments. Understanding DevOps principles is crucial for improving productivity, accelerating development, and ensuring scalability and efficient resource management.
+
+Containers are lightweight, pre-configured packages containing all necessary software components for an application, facilitating easy deployment with minimal configuration changes. Many leading companies like PayPal, Spotify, and Uber rely on Docker to streamline operations, consolidate infrastructure, and enhance application security.
+
+Containers are portable and can be deployed on various platforms such as bare instances, virtual machines, or Kubernetes, offering flexibility based on scalability requirements or preferred deployment platforms.
+
+================================================================
+
+Docker Basic Interview Questions
+--------------------------------
+1. Can you tell something about docker container?
+-> Docker containers are self-contained units that include applications and their dependencies. They share the host operating system's kernel and resources with other containers, operating as isolated systems. Their primary goal is to eliminate infrastructure dependencies during application deployment and execution. This enables containerized applications to run on various platforms regardless of the underlying infrastructure. Essentially, Docker containers are runtime instances of Docker images.
+
+2. What are docker images?
+-> Docker images are like bundles of software and code that can create containers. These containers can be used to run applications in any Docker environment.
+
+3. What is a DockerFile?
+-> It is a text file that has all commands which need to be run for building a given image.
+
+4. Can you tell what is the functionality of a hypervisor?
+-> A hypervisor is like a manager for virtual machines. It splits up the resources of a computer and gives them to different virtual environments, kind of like dividing up a pizza into slices. This lets you run multiple operating systems on one computer. There are two main types of hypervisors:
+
+1) Native Hypervisor: This type runs directly on the computer hardware, so it doesn't need another operating system to work. It's like having a pizza oven that can make pizzas without needing a kitchen.
+2) Hosted Hypervisor: This type relies on another operating system that's already installed on the computer. It's like using a pizza oven that's part of a bigger kitchen setup.
+
+5. What can you tell about Docker Compose?
+-> A YAML file contains information about services, networks, and volumes required to set up a Docker-based application. Docker-compose is used to create and manage multiple containers, allowing them to communicate with each other by exposing ports.
+
+6. Can you tell something about docker namespace?
+-> A namespace in Linux is a way to keep different parts of the operating system separate from each other. This separation helps with containerization, which is about isolating containers from each other. In Docker, namespaces make sure that containers can be moved easily and don't mess with the main system. Docker supports various types of namespaces like PID, Mount, User, Network, and IPC, each handling a different aspect of isolation.
+
+7. What is the docker command that lists the status of all docker containers?
+-> docker ps -a
+
+
