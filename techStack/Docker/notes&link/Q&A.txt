@@ -1,0 +1,228 @@
+reference:
+https://www.interviewbit.com/docker-interview-questions/
+https://intellipaat.com/blog/interview-question/docker-interview-questions-answers/
+ 
+Introduction to Docker:
+----------------------------------------------------------------
+Docker is a very popular and powerful open-source containerization platform that is used for building, deploying, and running applications. Docker allows you to decouple the application/software from the underlying infrastructure.
+
+What is a Container?
+---------------------
+A container is a standard unit of software bundled with dependencies so that applications can be deployed fast and reliably b/w different computing platforms.
+
+-> Docker can be visualized as a big ship (docker) carrying huge boxes of products (containers).
+-> Docker container doesn’t require the installation of a separate operating system. Docker just relies or makes use of the kernel’s resources and its functionality to allocate them for the CPU and memory it relies on the kernel’s functionality and uses resource isolation for CPU and memory, and separate namespaces to isolate the application’s view of the OS (operating system).
+
+Why Learn Docker?
+---------------------
+Application development is a complex process that goes beyond coding, involving the use of multiple frameworks and architectures across different stages of the development lifecycle. Containerization is a key strategy that simplifies and speeds up application workflows, allowing developers to use their preferred technologies and environments. Understanding DevOps principles is crucial for improving productivity, accelerating development, and ensuring scalability and efficient resource management.
+
+Containers are lightweight, pre-configured packages containing all necessary software components for an application, facilitating easy deployment with minimal configuration changes. Many leading companies like PayPal, Spotify, and Uber rely on Docker to streamline operations, consolidate infrastructure, and enhance application security.
+
+Containers are portable and can be deployed on various platforms such as bare instances, virtual machines, or Kubernetes, offering flexibility based on scalability requirements or preferred deployment platforms.
+
+================================================================
+
+Docker Basic Interview Questions
+--------------------------------
+1. Can you tell something about docker container?
+-> Docker containers are self-contained units that include applications and their dependencies. They share the host operating system's kernel and resources with other containers, operating as isolated systems. Their primary goal is to eliminate infrastructure dependencies during application deployment and execution. This enables containerized applications to run on various platforms regardless of the underlying infrastructure. Essentially, Docker containers are runtime instances of Docker images.
+
+2. What are docker images?
+-> Docker images are like bundles of software and code that can create containers. These containers can be used to run applications in any Docker environment.
+
+3. What is a DockerFile?
+-> It is a text file that has all commands which need to be run for building a given image.
+
+4. Can you tell what is the functionality of a hypervisor?
+-> A hypervisor is like a manager for virtual machines. It splits up the resources of a computer and gives them to different virtual environments, kind of like dividing up a pizza into slices. This lets you run multiple operating systems on one computer. There are two main types of hypervisors:
+
+1) Native Hypervisor: This type runs directly on the computer hardware, so it doesn't need another operating system to work. It's like having a pizza oven that can make pizzas without needing a kitchen.
+2) Hosted Hypervisor: This type relies on another operating system that's already installed on the computer. It's like using a pizza oven that's part of a bigger kitchen setup.
+
+5. What can you tell about Docker Compose?
+-> A YAML file contains information about services, networks, and volumes required to set up a Docker-based application. Docker-compose is used to create and manage multiple containers, allowing them to communicate with each other by exposing ports.
+
+6. Can you tell something about docker namespace?
+-> A namespace in Linux is a way to keep different parts of the operating system separate from each other. This separation helps with containerization, which is about isolating containers from each other. In Docker, namespaces make sure that containers can be moved easily and don't mess with the main system. Docker supports various types of namespaces like PID, Mount, User, Network, and IPC, each handling a different aspect of isolation.
+
+7. What is the docker command that lists the status of all docker containers?
+-> docker ps -a
+
+8. On what circumstances will you lose data stored in a container?
+-> The data of a container remains in it until and unless you delete the container.
+
+9. What is docker image registry?
+-> A Docker image registry, in simple terms, is an area where the docker images are stored. Instead of converting the applications to containers each and every time, a developer can directly use the images stored in the registry.
+-> This image registry can either be public or private and Docker hub is the most popular and famous public registry available.
+
+10. How many Docker components are there?
+-> Docker has three main parts:
+1. **Docker Client**: This is like the control center. It helps you build and run things using Docker. It talks to the Docker Host to get things done.
+2. **Docker Host**: Think of this as the place where everything happens. It has a special program called the Docker daemon that manages containers and their images. It also talks to the Docker Registry.
+3. **Docker Registry**: This is like a storage place for Docker images. It can be public, like Docker Hub or Docker Cloud, where everyone can access images, or private, where only certain people can access them.
+
+11. What is a Docker Hub?
+-> It is a public cloud-based registry provided by Docker for storing public images of the containers along with the provision of finding and sharing them.
+-> The images can be pushed to Docker Hub through the docker push command.
+
+12. What command can you run to export a docker image as an archive?
+-> This can be done using the docker save command and the syntax is: docker save -o <exported_name>.tar <container-name>
+
+13. What command can be run to import a pre-exported Docker image into another Docker host?
+-> This can be done using the docker load command and the syntax is docker load -i <export_image_name>.tar
+
+14. Can a paused container be removed from Docker?
+-> No, a paused container cannot be removed directly from Docker. To remove a container, it needs to be stopped or killed first. Pausing a container essentially freezes its processes, but it does not stop the container completely
+
+15. What command is used to check for the version of docker client and server?
+-> The command used to get all version information of the client and server is the docker version.
+-> To get only the server version details, we can run docker version --format '{{.Server.Version}}'
+
+================================================================
+
+Docker Intermediate Interview Questions
+---------------------------------------
+
+1. Differentiate between virtualization and containerization.
+Here's a simple explanation of the difference between virtual machines and Docker containers:
+
+->Virtualization: This allows developers to run multiple operating systems (OS) on one physical server. It uses hypervisors to create virtual machines that act like separate computers.
+
+-> Containerization (like Docker): This helps developers deploy multiple applications on one virtual machine or server using the same OS. Containers provide isolated environments for running applications, and changes made within a container don't affect the host or other containers.
+
+In essence, virtual machines mimic full-fledged computers with their own OS, while containers share the underlying OS but remain isolated from each other.
+
+2. Differentiate between COPY and ADD commands that are used in a Dockerfile?
+-> In simple terms, both "COPY" and "ADD" commands do similar things, like copying files into a container. However, "COPY" is often preferred because it's clearer and simpler. It mainly copies local files, while "ADD" can do more complex things like copying from a remote URL or extracting files from a tar archive.
+
+3. Can a container restart by itself?
+-> Yes, it is possible only while using certain docker-defined policies while using the docker run command. Following are the available policies:
+
+    1. Off: In this, the container won’t be restarted in case it's stopped or it fails.
+    2. On-failure: Here, the container restarts by itself only when it experiences failures not associated with the user.
+    3. Unless-stopped: Using this policy, ensures that a container can restart only when the command is executed to stop it by the user.
+    4. Always: Irrespective of the failure or stopping, the container always gets restarted in this type of policy.
+
+These policies can be used as:
+docker run -dit — restart [restart-policy-value] [container_name]
+
+4. Can you tell the differences between a docker Image and Layer?
+-> Image: This is built up from a series of read-only layers of instructions. An image corresponds to the docker container and is used for speedy operation due to the caching mechanism of each step.
+-> Layer: Each layer corresponds to an instruction of the image’s Dockerfile. In simple words, the layer is also an image but it is the image of the instructions run.
+Consider the example Dockerfile below.
+FROM ubuntu:18.04 COPY . /myapp RUN make /myapp CMD python /myapp/app.py Importantly, each layer is only a set of differences from the layer before it. 
+-> The result of building this docker file is an image. Whereas the instructions present in this file add the layers to the image. The layers can be thought of as intermediate images. In the example above, there are 4 instructions, hence 4 layers are added to the resultant image
+
+5. What is the purpose of the volume parameter in a docker run command?
+-> In simple terms, when you use Docker's volumes, you can sync a directory inside a Docker container with a directory on your computer. The syntax for this is `docker run -v host_path:docker_path <container_name>`. For example, `docker run -v /data/app:/usr/src/app myapp` would sync the `/data/app` directory on your computer with the `/usr/src/app` directory inside the container named `myapp`.
+
+-> This feature is handy because it lets you share data between your computer and the container without restarting the container. It also keeps your data safe even if you delete the container. The data remains in the host directory you mapped to the container, making it a convenient way to store container data.
+
+6. Where are docker volumes stored in docker?
+Volumes are created and managed by Docker and cannot be accessed by non-docker entities. They are stored in Docker host filesystem at /var/lib/docker/volumes/
+
+7. What does the docker info command do?
+The command gathers detailed info about Docker on the host system. It tells you things like how many containers or images there are, their running state, and hardware details like memory, processor speed, and kernel version.
+
+8. Can you tell the what are the purposes of up, run, and start commands of docker compose?
+-> up command:
+Purpose: Starts or restarts all networks, services, and drivers specified in the docker-compose.yml file.
+Code command: docker-compose up
+
+-> run command:
+Purpose: Runs one-off or ad-hoc tasks for a specific service specified in the docker-compose.yml file.
+Code command: docker-compose run [service_name] [command]
+
+-> start command:
+Purpose: Restarts containers that were previously created and then stopped.
+Code command: docker-compose start [service_name]
+
+9. What are the basic requirements for the docker to run on any system?
+-> Docker can run on both Windows and Linux platforms.For the Windows platform, docker atleast needs Windows 10 64bit with 2GB RAM space. For the lower versions, docker can be installed by taking help of the toolbox. Docker can be downloaded from https://docs.docker.com/docker-for-windows/ website.
+-> For Linux platforms, Docker can run on various Linux flavors such as Ubuntu >=12.04, Fedora >=19, RHEL >=6.5, CentOS >=6 etc
+
+10. Can you tell the approach to login to the docker registry?
+-> Using the docker login command credentials to log in to their own cloud repositories can be entered and accessed.
+
+11. List the most commonly used instructions in Dockerfile?
+    FROM: Specifies the base image for the container.
+    RUN: Executes commands in the container during build time.
+    COPY/ADD: Copies files and directories from the host to the container.
+    WORKDIR: Sets the working directory for subsequent instructions.
+    EXPOSE: Exposes specified ports for communication between the container and the outside world.
+    CMD: Specifies the default command to run when the container starts (can be overridden at runtime).
+    ENTRYPOINT: Sets the primary command to be executed when the container starts (can be appended with CMD).
+    ENV: Sets environment variables in the container.
+    ARG: Defines build-time variables that can be passed during the build using --build-arg.
+    VOLUME: Creates a mount point for volumes used by the container.
+    USER: Sets the user or UID to use when running the container.
+    LABEL: Adds metadata to the image in key-value format.
+    HEALTHCHECK: Defines a command to check the container's health status.
+    ONBUILD: Adds a trigger instruction to be executed when the image is used as a base for another build.
+
+12. Can you differentiate between Daemon Logging and Container Logging?
+-> In Docker, there are two levels of logging: Daemon level and Container level.
+1. **Daemon Level Logging:**
+   - This type of logging has four levels: Debug, Info, Error, and Fatal.
+   - Debug contains all the data from the daemon process execution.
+   - Info includes all information along with error details during the daemon process execution.
+   - Errors capture errors that occurred during the daemon process execution.
+   - Fatal logs fatal errors that happened during execution.
+2. **Container Level Logging:**
+   - Container level logging can be done using the command: `sudo docker run –it <container_name> /bin/bash`.
+   - To check container level logs, use the command: `sudo docker logs <container_id>`.
+
+13. What is the way to establish communication between docker host and Linux host?
+You can do this by using networking and finding the "ipconfig" on the Docker host. When you run this command, it makes sure that an ethernet adapter is made whenever Docker is on the host computer.
+
+14. What is the best way of deleting a container?
+We need to follow the following two steps for deleting a container:
+- docker stop <container_id>
+- docker rm <container_id>
+
+15. Can you tell the difference between CMD and ENTRYPOINT?
+-> In simple terms, the CMD command sets default actions for a running container. If you want to specify what should always run when the container starts, you use the ENTRYPOINT instruction in a JSON array format. This lets you configure parameters and executables. If your DockerFile doesn't have an ENTRYPOINT, it inherits from the base image specified in the FROM instruction.
+-> Usually, /bin/sh or /bin/bash are commonly used as ENTRYPOINT for most base images. It's considered a good practice to include at least one of these commands in every DockerFile.
+
+================================================================
+
+Docker Advanced Interview Questions
+-----------------------------------
+
+1. Can we use JSON instead of YAML while developing docker-compose file in Docker?
+-> Yes! It can be used. In order to run docker-compose with JSON, docker-compose -f docker-compose.json up can be used.
+
+2. How many containers you can run in docker and what are the factors influencing this limit?
+-> There is no clearly defined limit to the number of containers that can be run within docker. But it all depends on the limitations - more specifically hardware restrictions. The size of the app and the CPU resources available are 2 important factors influencing this limit. In case your application is not very big and you have abundant CPU resources, then we can run a huge number of containers.
+
+3. Describe the lifecycle of Docker Container?
+-> The different stages of the docker container from the start of creating it to its end are called the docker container life cycle. 
+The most important stages are:
+    Created: This is the state where the container has just been created new but not started yet.
+    Running: In this state, the container would be running with all its associated processes.
+    Paused: This state happens when the running container has been paused.
+    Stopped: This state happens when the running container has been stopped.
+    Deleted: In this, the container is in a dead state.
+
+4. How to use docker for multiple application environments?
+-> In simple terms, Docker-compose is a feature of Docker that helps manage multiple services, networks, and containers in an organized way using a file called docker-compose.yml. With Docker-compose, we can easily define how different parts of our application should work together, including volume mapping. 
+-> When dealing with various environments like development, staging, testing, or production servers, we might need to set up different configurations for each environment. To do this, we can create specific docker-compose files for each environment, such as docker-compose.dev.yml, docker-compose.staging.yml, etc. Then, depending on the environment, we can use the respective file to set up and run our application.
+
+5. How will you ensure that a container 1 runs before container 2 while using docker compose?
+-> To ensure that a container named "container 1" runs before "container 2" in Docker Compose, you can use the "depends_on" feature introduced in version 2 of Docker Compose. This feature allows you to specify the order of execution for services in your Docker Compose file.
+    Here's an example of how to use "depends_on" in a Docker Compose file:
+    ```yaml
+    version: "2.4"
+    services:
+    container1:
+        build: .
+        depends_on:
+        - container2
+    container2:
+        image: postgres
+    ```
+
+    -> When you use the `docker-compose up` command, Docker Compose will start and run the services in the order specified by their dependencies. In this example, "container 2" (DB container) will start before "container 1" (backend).
+    -> Additionally, when you run `docker-compose up SERVICE_NAME`, it includes the dependencies associated with that service. So, running `docker-compose up container1` will also start "container 2" because it depends on it.
+    -> Lastly, when you run `docker-compose stop`, it stops the services in the order of their dependencies. In the given example, "container 1" (backend) will stop before "container 2" (DB).
