@@ -1,0 +1,103 @@
+Redis Interview Questions
+--------------------------
+reference: https://www.javatpoint.com/redis-interview-questions-and-answers
+
+1) What is Redis?
+-> Redis is an open-source, advance key value data store and cache. It is also referred as a data structure server which keys not only contains strings, but also hashes, sets, lists, and sorted sets.
+
+2) What is the meaning of Redis?
+-> Redis stands for REmote DIctionary Server.
+
+3) How is Redis different from other databases?
+-> Redis is a NoSQL, Opensource, in-memory data-structure store. It follows the principle of key-value store. It is extremely fast, persistent, portable and supports many languages such as C, C++, C#, Clojure, Common Lisp, D, Dart, Erlang, Go, Haskell, Haxe, Io, Java, JavaScript (Node.js), Julia, Lua, Objective-C, Perl, PHP, Pure Data, Python, R, Racket, Ruby, Rust, Scala, Smalltalk and Tcl.
+
+4) In which language Redis is written?
+-> Redis is written in ANSI C and mostly used for cache solution and session management. It creates unique keys for store values.
+
+5) What is the usage of Redis?
+-> Redis is a special key-value store database that can function as a NoSQL database or as a memory-cache store to improve performance when serving data that is stored in system memory.
+
+6) How to interect with Redis?
+-> After the installation of the server you can run the Redis Client provided by redis installation or you can open the command prompt and use the following command:
+<<<---- redis-cli ---->>> 
+
+8) What are the main features of Redis?
+-> Following are the main features of Redis:
+1. Redis is very simple to install setup and manage.
+2. Redis is very fast. It can execute 100000 queries per second.
+3. Redis is fast because data is being persistent in memory as well as stored on the disk.
+4. Redis is very fast because it loads the whole dataset in primary memory.
+5. Redis operations working on different data types are atomic so these operations can be accomplished safely i.e. to set or increase a key, add or remove elements from a set or increase a counter.
+6. It supports various types of data structure such as strings, hashes, sets, lists, sorted sets etc.
+7. Redis supports a variety of languages i.e. C, C++, C#, Ruby, Python, Twisted Python, PHP, Erlang, Tcl, Perl, Lua, Java, Scala etc.
+8. If your favorite language is not supported yet, you can write your own client library, as the Protocol is pretty simple.
+9. Redis supports simple master to slave replication.
+10. Redis is portable.
+
+9) Explain the Replication Features of Redis? ** 
+-> Replication is important in order to archive high level of availability in big data systems. The data needs to be replicated at n number of places. This follows the master-slave approach where the master copy is maintained by master-slave and replicated to n other nodes.
+
+10) What are the advantages of using Redis?
+-> Following is a list of some important advantages of Redis:
+- Redis is very fast.
+- It supports a server-side locking.
+- It has a rich client side library.
+- It is a good counter.
+- It supports Atomic Operation.
+
+11) What are the disadvantages/limitations of using Redis?
+-> Following are the disadvantages/ limitations of Redis:
+- It is single threaded.
+- It has got limited client support for consistent hashing.
+- It has significant overhead for persistence.
+- It is not deployed widely.
+
+12) What is the difference between Redis and RDBMS?
+-> There are a lot of differences between Redis and RDBMS:
+- Redis is a NoSQL database while RDBMS is an SQL database.
+- Redis follows the key-value structure while RDBMS follows the table structure.
+- Redis extremely fast while RDBMS is comparatively slow.
+- Redis stores all the dataset in primary memory while RDBMS stores its dataset in secondary memory.
+- Redis is generally used to store small and frequently used files while RDBMS is used to store big files.
+- Redis provides only official support for Linux, BSD, Mac OS X, Solaris. It doesn't provide official support for Windows currently while RDBMS provides support for both.
+
+14) Mention Operation Keys of Redis.
+-> TYPE key, TTL key, EXPIRE key seconds, EXPIREAT key timestamp, EXISTS key, DEL key.
+
+15) Which are the different data types used in Redis?
+-> There are mainly 5 types of data types supported by Redis:
+- Strings, Hashes, Lists, Sets, Sorted Sets
+
+17) We all know that Reds is fast, but is it also durable?
+-> In Redis, there is always a trade-of between durability and speed. In the case of system failure, it may lose data which is not stored.
+
+18) How can you enhance the durability of Redis?
+- Whenever a new command is added to the append log file, call Fsysnc() each time.
+- Keep calling Fsysnc() in every second. Despite of the 1 second data lose in the case of system fails.
+
+19) What are the concerned things while using Redis? **
+- Consistent method selection in order to name and prefix the keys. Namespace management.
+- Make key prefixes registry which can map every documents to their owner applications.
+- Designing, implementing and testing the Garbage collection mechanism for each class we keep into the redis architecture.
+- Maintain a sharding library before investing so much into the application.
+
+
+****************************************************************
+
+
+2) Explain the Replication feature of Redis?
+-> Redis supports simple master to slave replication. When a relationship is established, data from the master is transferred to the slave. Once this is done, all changes to the master replicate to the slave
+
+9) How can you improve the durability in Redis?
+- To improve the durability of Redis “append only file” can be configured by using fsync data on disk.
+- Fsync () every time a new command is added to the append log file: It is safe but very slow
+- Fysnc() one time every second: It is fast, but you may lose 1 second of data if system fails
+- Never fsync(): It is an unsafe method, and your data is in hand of Operating System
+
+10) Mention what are the things you have to take care while using Redis?
+-> While using Redis one must take care of
+- Select a consistent method to name and prefix your keys. Manage your namespace
+- Create a “Registry” of key prefixes that maps each of your internal documents for that application which “own” them
+- For every class you put through into your Redis infrastructure: design, implement and test the mechanisms for garbage collection or data migration to archival storage
+- Design, implement and test a sharding library before you have invested much into your application deployment and make sure that you keep a registry of “shards “replicated on each server
+- Separate all your K/V store and related operations into your own library/API or service
