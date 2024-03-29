@@ -1016,5 +1016,39 @@ var isPalindrome = function (s) {
   return true;
 };
 
+// -------------------------------------------------------------------------------------------
+
+// Problem: 29 || 206. Reverse Linked List || https://leetcode.com/problems/reverse-linked-list/description
+// Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+// Example 1:
+// Input: head = [1,2,3,4,5]
+// Output: [5,4,3,2,1]
+
+// solution:
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+  let currentNode = head;
+  if(!currentNode) return currentNode
+  let previousNode = null;
+  while (currentNode) {
+      nextNode = currentNode.next;
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      currentNode = nextNode;
+  }
+  return previousNode
+};
 
 // -------------------------------------------------------------------------------------------
