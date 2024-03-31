@@ -1,13 +1,13 @@
-// Reference Link: https://www.youtube.com/watch?v=ZJJHm_bd9Zo
+//? Reference Link: https://www.youtube.com/watch?v=ZJJHm_bd9Zo
 
-// Kafka
+//! Kafka
 // ----------------------------------------------------------------
 
-// Apache Kafka is an open-source distributed event streaming platform used for building real-time data pipelines and streaming applications. It is designed to handle high volumes of data, provide fault tolerance, and ensure low-latency message delivery. Kafka is widely used for various use cases such as real-time analytics, log aggregation, monitoring, and messaging systems.
+//- Apache Kafka is an open-source distributed event streaming platform used for building real-time data pipelines and streaming applications. It is designed to handle high volumes of data, provide fault tolerance, and ensure low-latency message delivery. Kafka is widely used for various use cases such as real-time analytics, log aggregation, monitoring, and messaging systems.
 
 // Here are some important topics related to Kafka:
 
-// 1. **Topics**:
+//* 1. **Topics**:
 // Topics are the categories or feeds to which records are published. They act as channels through which data flows in Kafka.
 
 // const { Kafka } = require('kafkajs');
@@ -27,7 +27,7 @@ async function createTopic() {
 
 createTopic();
 
-// 2. **Partitions**:
+//* 2. **Partitions**:
 // Partitions allow parallel processing and improve throughput. Each partition is an ordered, immutable sequence of records.
 
 // const { Kafka } = require('kafkajs');
@@ -52,7 +52,7 @@ async function createPartitionedTopic() {
 
 createPartitionedTopic();
 
-// 3. **Brokers**:
+//* 3. **Brokers**:
 // Brokers are servers that store data, handle data replication, partitioning, and distribution across nodes.
 
 // const { Kafka2 } = require('kafkajs');
@@ -72,7 +72,7 @@ async function getBrokerMetadata() {
 
 getBrokerMetadata();
 
-// 4. **Producers**:
+//* 4. **Producers**:
 // Producers publish messages to Kafka topics.
 
 // const { Kafka3 } = require('kafkajs');
@@ -95,7 +95,7 @@ async function produceMessage(topic, message) {
 
 produceMessage("my-topic", "Hello Kafka!");
 
-// 5. **Consumers**:
+//* 5. **Consumers**:
 // Consumers subscribe to Kafka topics and consume messages.
 
 // const { Kafka4 } = require('kafkajs');
@@ -124,7 +124,7 @@ async function consumeMessages(topic) {
 
 consumeMessages("my-topic");
 
-// 6. **Consumer Groups**:
+//* 6. **Consumer Groups**:
 // Consumer groups enable multiple consumers to work together to consume messages from a topic.
 
 // const { Kafka5 } = require('kafkajs');
@@ -155,7 +155,7 @@ async function consumeWithConsumerGroups(topic, consumer) {
 consumeWithConsumerGroups("my-topic", consumer1);
 consumeWithConsumerGroups("my-topic", consumer2);
 
-// 7. **Offsets**:
+//* 7. **Offsets**:
 // Offsets are unique identifiers for messages within a partition.
 
 // const { Kafka6 } = require('kafkajs');
