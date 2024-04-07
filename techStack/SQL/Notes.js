@@ -328,3 +328,171 @@ SELECT name FROM Contacts;`
 //! 22. What is Cursor?
 // A **database cursor** helps you move through records in a database. It's like a pointer to one row in a bunch of rows, allowing you to navigate and do things like get, add, or remove records. Cursors are handy for managing data after you've found what you're looking for.
 
+//! 23. What are Entities and Relationships?
+// *Entity: 
+// An entity can be a real-world object, either tangible or intangible, that can be easily identifiable. For example, in a college database, students, professors, workers, departments, and projects can be referred to as entities. Each entity has some associated properties that provide it an identity.
+// *Relationships: 
+// Relations or links between entities that have something to do with each other. For example - The employee's table in a company's database can be associated with the salary table in the same database.
+
+//! 24. List the different types of relationships in SQL.
+// *One-to-One 
+// This can be defined as the relationship between two tables where each record in one table is associated with the maximum of one record in the other table.
+// *One-to-Many & Many-to-One 
+// This is the most commonly used relationship where a record in a table is associated with multiple records in the other table.
+// *Many-to-Many 
+// This is used in cases when multiple instances on both sides are needed for defining a relationship.
+// *Self-Referencing Relationships 
+// This is used when a table needs to define a relationship with itself.
+
+//! 25. What is an Alias in SQL?
+// An alias in SQL is a temporary name given to a table or column in a query. It helps simplify queries and can be used for security by hiding actual field names. Table aliases are also known as correlation names. It's recommended to use the AS keyword for clarity, although it's not always required.
+// -- Using AS keyword for table alias
+`SELECT t1.column1 AS alias_name
+FROM table1 AS t1;`
+// -- Without AS keyword (less common)
+`SELECT t1.column1 alias_name
+FROM table1 t1;`
+
+//! 26. What is a View?
+// A view in SQL is a virtual table based on the result-set of an SQL statement. A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.
+
+//! 27. What is Normalization?
+// Normalization is about structuring data in a database to make it efficient and organized. It involves creating tables, linking them together, and setting rules for these connections. This helps to avoid inconsistencies and unnecessary repetition of data, making the database more flexible and easier to manage.
+
+//! 28. What is Denormalization?
+// Denormalization is the inverse process of normalization, where the normalized schema is converted into a schema that has redundant information. The performance is improved by using redundancy and keeping the redundant data consistent. The reason for performing denormalization is the overheads produced in the query processor by an over-normalized structure.
+
+//! 29. What are the various forms of Normalization?
+// Normal Forms are used to eliminate or reduce redundancy in database tables. The different forms are as follows:
+// *First Normal Form:
+// A relation is in first normal form if every attribute in that relation is a single-valued attribute. If a relation contains a composite or multi-valued attribute, it violates the first normal form. Let's consider the following students table. Each student in the table, has a name, his/her address, and the books they issued from the public library.
+// *Second Normal Form:
+// A relation is in second normal form if it satisfies the conditions for the first normal form and does not contain any partial dependency. A relation in 2NF has no partial dependency, i.e., it has no non-prime attribute that depends on any proper subset of any candidate key of the table. Often, specifying a single column Primary Key is the solution to the problem.
+// *Third Normal Form
+// A relation is said to be in the third normal form, if it satisfies the conditions for the second normal form and there is no transitive dependency between the non-prime attributes, i.e., all non-prime attributes are determined only by the candidate keys of the relation and not by any other non-prime attribute.
+// *Boyce-Codd Normal Form
+// A relation is in Boyce-Codd Normal Form if satisfies the conditions for third normal form and for every functional dependency, Left-Hand-Side is super key. In other words, a relation in BCNF has non-trivial functional dependencies in form X –> Y, such that X is always a super key. For example - In the above example, Student_ID serves as the sole unique identifier for the Students Table and Salutation_ID for the Salutations Table, thus these tables exist in BCNF. The same cannot be said for the Books Table and there can be several books with common Book Names and the same Student_ID
+
+//! 30. What are the TRUNCATE, DELETE and DROP statements?
+// DELETE statement is used to delete rows from a table.
+`DELETE FROM Candidates
+WHERE CandidateId > 1000;`
+// TRUNCATE command is used to delete all the rows from the table and free the space containing the table.
+`TRUNCATE TABLE Candidates;`
+// DROP command is used to remove an object from the database. If you drop a table, all the rows in the table are deleted and the table structure is removed from the database.
+`DROP TABLE Candidates;`
+
+//! 31. What is the difference between DROP and TRUNCATE statements?
+// If a table is dropped, all things associated with the tables are dropped as well. This includes - the relationships defined on the table with other tables, the integrity checks and constraints, access privileges and other grants that the table has. To create and use the table again in its original form, all these relations, checks, constraints, privileges and relationships need to be redefined. However, if a table is truncated, none of the above problems exist and the table retains its original structure
+
+//! 32. What is the difference between DELETE and TRUNCATE statements?
+// The TRUNCATE command is used to delete all the rows from the table and free the space containing the table.
+// The DELETE command deletes only the rows from the table based on the condition given in the where clause or deletes all the rows from the table if no condition is specified. But it does not free the space containing the table.
+
+//! 33. What are Aggregate and Scalar functions?
+// **Aggregate Functions:**
+// Aggregate functions in SQL perform operations on a group of values and return a single value. They are commonly used with the GROUP BY and HAVING clauses in SELECT statements. Examples of widely used SQL aggregate functions include COUNT, SUM, AVG, MIN, and MAX.
+// -AVG() - Calculates the mean of a collection of values.
+// -COUNT() - Counts the total number of records in a specific table or view.
+// -MIN() - Calculates the minimum of a collection of values.
+// -MAX() - Calculates the maximum of a collection of values.
+// -SUM() - Calculates the sum of a collection of values.
+// -FIRST() - Fetches the first element in a collection of values.
+// -LAST() - Fetches the last element in a collection of values.
+// Note: All aggregate functions described above ignore NULL values except for the COUNT function.
+```
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000;
+```
+// **Scalar Functions:**
+// Scalar functions, on the other hand, operate on a single input value and return a single output value. They can be used within SQL queries to manipulate data at the row level. Examples of scalar functions include CONCAT, UPPER, LOWER, and DATE functions.
+// -LEN() - Calculates the total length of the given field (column).
+// -UCASE() - Converts a collection of string values to uppercase characters.
+// -LCASE() - Converts a collection of string values to lowercase characters.
+// -MID() - Extracts substrings from a collection of string values in a table.
+// -CONCAT() - Concatenates two or more strings.
+// -RAND() - Generates a random collection of numbers of a given length.
+// -ROUND() - Calculates the round-off integer value for a numeric field (or decimal point values).
+// -NOW() - Returns the current date & time.
+// -FORMAT() - Sets the format to display a collection of values
+
+//! 34. What is User-defined function? What are its various types?
+// The user-defined functions in SQL are like functions in any other programming language that accept parameters, perform complex calculations, and return a value. They are written to use the logic repetitively whenever required. There are two types of SQL user-defined functions:
+// *Scalar Function: 
+// As explained earlier, user-defined scalar functions return a single scalar value.
+// *Table-Valued Functions: 
+// User-defined table-valued functions return a table as output.
+// - Inline: returns a table data type based on a single SELECT statement.
+// - Multi-statement: returns a tabular result-set but, unlike inline, multiple SELECT statements can be used inside the function body.
+`-- Scalar Function
+CREATE FUNCTION dbo.CalculateTax(@Amount DECIMAL(10, 2))
+RETURNS DECIMAL(10, 2)
+AS
+BEGIN
+    DECLARE @Tax DECIMAL(10, 2);
+    SET @Tax = @Amount * 0.1; -- Assuming 10% tax rate
+    RETURN @Tax;
+END;
+
+-- Inline Table-Valued Function
+CREATE FUNCTION dbo.GetProductsByCategory(@CategoryID INT)
+RETURNS TABLE
+AS
+RETURN (
+    SELECT ProductID, ProductName, UnitPrice
+    FROM Products
+    WHERE CategoryID = @CategoryID
+);`
+// In this example, CalculateTax is a scalar function that calculates tax based on the input amount, while GetProductsByCategory is an inline table-valued function that retrieves products based on a specified category ID.
+
+//! 36. What are the differences between OLTP and OLAP?
+// *OLTP (Online Transaction Processing):
+// OLTP stands for Online Transaction Processing, is a class of software applications capable of supporting transaction-oriented programs. An important attribute of an OLTP system is its ability to maintain concurrency. OLTP systems often follow a decentralized architecture to avoid single points of failure. These systems are generally designed for a large audience of end-users who conduct short transactions. Queries involved in such databases are generally simple, need fast response times, and return relatively few records. A number of transactions per second acts as an effective measure for such systems.
+// *OLAP (Online Analytical Processing):
+// OLAP stands for Online Analytical Processing, a class of software programs that are characterized by the relatively low frequency of online transactions. Queries are often too complex and involve a bunch of aggregations. For OLAP systems, the effectiveness measure relies highly on response time. Such systems are widely used for data mining or maintaining aggregated, historical data, usually in multi-dimensional schemas.
+
+// 37. What is Collation? What are the different types of Collation Sensitivity?
+// Collation refers to a set of rules that determine how data is sorted and compared. Rules defining the correct character sequence are used to sort the character data. It incorporates options for specifying case sensitivity, accent marks, kana character types, and character width. Below are the different types of collation sensitivity:
+// - Case sensitivity: A and a are treated differently.
+// - Accent sensitivity: a and á are treated differently.
+// - Kana sensitivity: Japanese kana characters Hiragana and Katakana are treated differently.
+// - Width sensitivity: Same character represented in single-byte (half-width) and double-byte (full-width) are treated differently.
+
+//! 40. How to create empty tables with the same structure as another table?
+// Creating empty tables with the same structure can be done smartly by fetching the records of one table into a new table using the INTO operator while fixing a WHERE clause to be false for all records. Hence, SQL prepares the new table with a duplicate structure to accept the fetched records but since no records get fetched due to the WHERE clause in action, nothing is inserted into the new table.
+`SELECT * INTO Students_copy
+FROM Students WHERE 1 = 2;`
+
+//! 41. What is Pattern Matching in SQL?
+// SQL pattern matching provides for pattern search in data if you have no clue as to what that word should be. This kind of SQL query uses wildcards to match a string pattern, rather than writing the exact word. The LIKE operator is used in conjunction with SQL Wildcards to fetch the required information.
+// *Using the % wildcard to perform a simple search
+// The % wildcard matches zero or more characters of any type and can be used to define wildcards both before and after the pattern. Search a student in your database with first name beginning with the letter K:
+`SELECT *
+FROM students
+WHERE first_name LIKE 'K%'`
+// *Omitting the patterns using the NOT keyword
+// Use the NOT keyword to select records that don't match the pattern. This query returns all students whose first name does not begin with K.
+`SELECT *
+FROM students
+WHERE first_name NOT LIKE 'K%'`
+// *Matching a pattern anywhere using the % wildcard twice
+// Search for a student in the database where he/she has a K in his/her first name.
+`SELECT *
+FROM students
+WHERE first_name LIKE '%Q%'`
+// *Using the _ wildcard to match pattern at a specific position
+// The _ wildcard matches exactly one character of any type. It can be used in conjunction with % wildcard. This query fetches all students with letter K at the third position in their first name.
+`SELECT *
+FROM students
+WHERE first_name LIKE '__K%'`
+// *Matching patterns for a specific length
+// The _ wildcard plays an important role as a limitation when it matches exactly one character. It limits the length and position of the matched results. For example - 
+`SELECT *   /* Matches first names with three or more letters */
+FROM students
+WHERE first_name LIKE '___%'
+
+SELECT *   /* Matches first names with exactly four characters */
+FROM students
+WHERE first_name LIKE '____'`
