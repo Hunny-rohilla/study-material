@@ -454,7 +454,7 @@ RETURN (
 // *OLAP (Online Analytical Processing):
 // OLAP stands for Online Analytical Processing, a class of software programs that are characterized by the relatively low frequency of online transactions. Queries are often too complex and involve a bunch of aggregations. For OLAP systems, the effectiveness measure relies highly on response time. Such systems are widely used for data mining or maintaining aggregated, historical data, usually in multi-dimensional schemas.
 
-// 37. What is Collation? What are the different types of Collation Sensitivity?
+//! 37. What is Collation? What are the different types of Collation Sensitivity?
 // Collation refers to a set of rules that determine how data is sorted and compared. Rules defining the correct character sequence are used to sort the character data. It incorporates options for specifying case sensitivity, accent marks, kana character types, and character width. Below are the different types of collation sensitivity:
 // - Case sensitivity: A and a are treated differently.
 // - Accent sensitivity: a and á are treated differently.
@@ -504,5 +504,248 @@ WHERE first_name LIKE '____'`
 
 //! 1. What is PostgreSQL?
 // PostgreSQL was first called Postgres and was developed by a team led by Computer Science Professor Michael Stonebraker in 1986. It was developed to help developers build enterprise-level applications by upholding data integrity by making systems fault-tolerant. PostgreSQL is therefore an enterprise-level, flexible, robust, open-source, and object-relational DBMS that supports flexible workloads along with handling concurrent users. It has been consistently supported by the global developer community. Due to its fault-tolerant nature, PostgreSQL has gained widespread popularity among developers
-
 //? https://www.interviewbit.com/blog/postgresql-commands/
+
+//! What is the difference between PostgreSQL and MySQL?
+// **Introduction:**
+// PostgreSQL and MySQL are widely used open-source relational database management systems (RDBMS) for data storage and management.
+// **Data Handling:**
+// - PostgreSQL offers advanced features and supports complex queries and data types.
+// - MySQL is known for its user-friendly interface, making it ideal for simpler applications and web development projects.
+// **Performance:**
+// - PostgreSQL performs well with complex queries and large datasets.
+// - MySQL is faster for read-heavy operations but may struggle with complex queries and heavy writes.
+// **Transactions and Concurrency:**
+// - PostgreSQL excels in supporting transactions and concurrency control, ensuring strict data consistency.
+// - MySQL also supports transactions but may need extra setup for high-concurrency scenarios.
+// **Community and Ecosystem:**
+// - PostgreSQL has a strong community and extensive ecosystem with many available extensions and tools.
+// - MySQL, supported by Oracle Corporation, boasts a large user base and various plugins and integrations.
+// **Use Cases:**
+// - PostgreSQL is popular for data warehousing, GIS (geographic information system) applications, and scenarios requiring strong data integrity.
+// - MySQL shines in web apps, content management systems (CMS), and situations prioritizing quick setup and ease of use.
+// **Conclusion:**
+// Both PostgreSQL and MySQL are robust database systems, each with distinct strengths and suitable use cases. The choice between them depends on factors like data complexity, performance needs, and ecosystem preferences.
+
+//! 2. How do you define Indexes in PostgreSQL?
+// Indexes in PostgreSQL are built-in functions that help queries search for data more efficiently in a database table. Imagine you have a table with thousands of records and you run a query that needs only a few records meeting a specific condition. Without an index, the database engine has to check each row individually to find matches, which can be very slow and inefficient, especially with large amounts of data.
+// However, if you create an index on the column used in the search condition, PostgreSQL can quickly identify matching rows by navigating through a smaller subset of data. This process is called indexing and significantly speeds up search operations.
+
+```
+CREATE INDEX index_name ON table_name (column_name);
+
+Select * from some_table where table_col=120
+```
+//! 3. How will you change the datatype of a column?
+// This can be done by using the ALTER TABLE statement as shown below:
+`Syntax:
+ALTER TABLE tname
+ALTER COLUMN col_name [SET DATA] TYPE new_data_type;`
+
+//! 4. What is the command used for creating a database in PostgreSQL?
+// The first step of using PostgreSQL is to create a database. This is done by using the createdb command as shown below: 
+`createdb db_name`
+// After running the above command, if the database creation was successful, then the below message is shown:
+`CREATE DATABASE`
+
+//! 5. How can we start, restart and stop the PostgreSQL server?
+// To start the PostgreSQL server, we run:
+`service postgresql start`
+// Once the server is successfully started, we get the below message:
+// Starting PostgreSQL: ok
+// To restart the PostgreSQL server, we run:
+`service postgresql restart`
+// Once the server is successfully restarted, we get the message:
+// Restarting PostgreSQL: server stopped ok
+// To stop the server, we run the command:
+`service postgresql stop`
+// Once stopped successfully, we get the message:
+// Stopping PostgreSQL: server stopped ok
+
+//! 6. What are partitioned tables called in PostgreSQL?
+// **What are Partitioned Tables?**
+// Partitioned tables are used to divide large tables into smaller parts called partitions. This helps improve query performance with big database tables.
+// **Creating Partitions:**
+// -Define a partition key (usually a table column or expression).
+// -Choose a partitioning method.
+
+// #Types of Partitioning Methods:
+// **Range Partitioning:** 
+// Divides based on a range of values, often used for date fields (e.g., monthly, weekly, yearly data). Handles corner cases like values at range ends correctly.
+// **List Partitioning:** 
+// Divides based on a list of known values (e.g., sales data by regions like countries, cities, states).
+// **Hash Partitioning:** 
+// Uses a hash function on the partition key, suitable when no specific data division is needed (e.g., accessing data for a specific product).
+// **Impact on Performance and Manageability:**
+// The type of partition key and method used affect performance and manageability of the partitioned table.
+
+//! 7. Define tokens in PostgreSQL?
+// Tokens in PostgreSQL refer to various elements such as keywords, identifiers, literals, constants, quoted identifiers, and symbols that have specific meanings within the database. These tokens can be separated by spaces, newlines, or tabs, but it's not always necessary.
+// If a token represents a keyword, it typically denotes a command or action with a specific purpose in PostgreSQL. Tokens are fundamental units that make up PostgreSQL code, serving as the building blocks for constructing database queries, commands, and scripts.
+```sql
+-- Example of PostgreSQL tokens in a SQL query
+SELECT * FROM users WHERE age > 25;
+```
+// In this SQL query, "SELECT," "*", "FROM," "users," "WHERE," "age," ">", and "25" are all tokens representing different elements like keywords, identifiers, and literals.
+
+//! 8. What is the importance of the TRUNCATE statement?
+// TRUNCATE TABLE name_of_table statement removes the data efficiently and quickly from the table.
+// The truncate statement can also be used to reset values of the identity columns along with data cleanup as shown below:
+`TRUNCATE TABLE name_of_table 
+RESTART IDENTITY;`
+// We can also use the statement for removing data from multiple tables all at once by mentioning the table names separated by comma as shown below:
+`TRUNCATE TABLE 
+   table_1, 
+   table_2,
+   table_3;`
+
+//! 9. What is the capacity of a table in PostgreSQL?
+// The maximum size of PostgreSQL is 32TB.
+
+//! 10. Define sequence.
+// A sequence is a schema-bound, user-defined object which aids to generate a sequence of integers. This is most commonly used to generate values to identity columns in a table. We can create a sequence by using the CREATE SEQUENCE statement as shown below:
+`CREATE SEQUENCE serial_num START 100;`
+// To get the next number 101 from the sequence, we use the nextval() method as shown below:
+`SELECT nextval('serial_num');`
+// We can also use this sequence while inserting new records using the INSERT command:
+`INSERT INTO ib_table_name VALUES (nextval('serial_num'), 'interviewbit');`
+
+//! 11. What are string constants in PostgreSQL?
+// They are character sequences bound within single quotes. These are using during data insertion or updation to characters in the database.
+// There are special string constants that are quoted in dollars. Syntax: $tag$<string_constant>$tag$ The tag in the constant is optional and when we are not specifying the tag, the constant is called a double-dollar string literal.
+
+//! 12. How can you get a list of all databases in PostgreSQL?
+// This can be done by using the command \l -> backslash followed by the lower-case letter L.
+
+//! 13. How can you delete a database in PostgreSQL?
+// DROP DATABASE database_name;
+
+//! 14. What are ACID properties? Is PostgreSQL compliant with ACID?
+// ## ACID Properties in Databases:
+// **Atomicity:** 
+// Transactions are either fully completed or not at all, ensuring no partial updates occur.
+// **Consistency:** 
+// Database updates follow rules and constraints, maintaining data integrity.
+// **Isolation:** 
+// Transactions are isolated from each other to prevent interference, ensuring transaction integrity.
+// **Durability:** 
+// Committed transactions are permanently stored in the database, even in the event of system failures.
+// **Example:** 
+// PostgreSQL adheres to the ACID properties, providing reliability and data consistency in transactions.
+
+//! 15. Can you explain the architecture of PostgreSQL?
+// # Architecture of PostgreSQL: 
+// PostgreSQL follows the client-server model, where the server side includes various components working together to manage data. The client application connects to this server to access and process data.
+// # Server Side Components:
+// The server side of PostgreSQL consists of:
+// **Background Process Manager**
+// Manages background processes for tasks like logging and maintenance.
+// **Query Processor**
+// Handles queries from clients and interacts with the database.
+// **Utilities**
+// Provides tools for database management tasks.
+// **Shared Memory Space**
+// Allows processes to share data efficiently.
+// Together, these components create a PostgreSQL instance with access to the stored data.
+
+// # Client Application:
+// The client application, which can be a Graphical User Interface (GUI) or a web application, connects to the PostgreSQL instance on the server side. It sends requests for data processing and interacts with the services provided by the server.
+// - Popular Client: pgAdmin
+
+//! 16. What do you understand by multi-version concurrency control?
+// MVCC or Multi-version concurrency control is used for avoiding unnecessary database locks when 2 or more requests tries to access or modify the data at the same time. This ensures that the time lag for a user to log in to the database is avoided. The transactions are recorded when anyone tries to access the content.
+
+//! 17. What do you understand by command enable-debug?
+// The command enable-debug is used for enabling the compilation of all libraries and applications. When this is enabled, the system processes get hindered and generally also increases the size of the binary file. Hence, it is not recommended to switch this on in the production environment. This is most commonly used by developers to debug the bugs in their scripts and help them spot the issues
+
+//! 20. What is the main disadvantage of deleting data from an existing table using the DROP TABLE command?
+// DROP TABLE command deletes complete data from the table along with removing the complete table structure too. In case our requirement entails just remove the data, then we would need to recreate the table to store data in it. In such cases, it is advised to use the TRUNCATE command.
+
+//! 21. How do you perform case-insensitive searches using regular expressions in PostgreSQL?
+// To perform case insensitive matches using a regular expression, we can use POSIX (~*) expression from pattern matching operators. For example:
+`'interviewbit' ~* '.*INTervIewBit.*'`
+
+//! 22. How will you take backup of the database in PostgreSQL?
+// We can achieve this by using the pg_dump tool for dumping all object contents in the database into a single file. The steps are as follows:
+// - Step 1: Navigate to the bin folder of the PostgreSQL installation path.
+`C:\>cd C:\Program Files\PostgreSQL\10.0\bin`
+// - Step 2: Execute pg_dump program to take the dump of data to a .tar folder as shown below:
+`pg_dump -U postgres -W -F t sample_data > C:\Users\admin\pgbackup\sample_data.tar`
+// The database dump will be stored in the sample_data.tar file on the location specified.
+
+//! 23. Does PostgreSQL support full text search?
+// Full-Text Search is the method of searching single or collection of documents stored on a computer in a full-text based database. This is mostly supported in advanced database systems like SOLR or ElasticSearch. However, the feature is present but is pretty basic in PostgreSQL.
+
+//! 24. What are parallel queries in PostgreSQL?
+// Parallel Queries support is a feature provided in PostgreSQL for devising query plans capable of exploiting multiple CPU processors to execute the queries faster.
+
+//! 25. Differentiate between commit and checkpoint.
+// The commit action ensures that the data consistency of the transaction is maintained and it ends the current transaction in the section. Commit adds a new record in the log that describes the COMMIT to the memory. Whereas, a checkpoint is used for writing all changes that were committed to disk up to SCN which would be kept in datafile headers and control files.
+
+
+// # Conclusion:
+// SQL is a language for the database. It has a vast scope and robust capability of creating and manipulating a variety of database objects using commands like CREATE, ALTER, DROP, etc, and also in loading the database objects using commands like INSERT. It also provides options for Data Manipulation using commands like DELETE, TRUNCATE and also does effective retrieval of data using cursor commands like FETCH, SELECT, etc. There are many such commands which provide a large amount of control to the programmer to interact with the database in an efficient way without wasting many resources. The popularity of SQL has grown so much that almost every programmer relies on this to implement their application's storage functionalities thereby making it an exciting language to learn. Learning this provides the developer a benefit of understanding the data structures used for storing the organization's data and giving an additional level of control and in-depth understanding of the application.
+// PostgreSQL being an open-source database system having extremely robust and sophisticated ACID, Indexing, and Transaction supports has found widespread popularity among the developer community. 
+
+//================================================================
+// ## Top PostgreSQL Commands You Must Know
+//================================================================
+
+//! 1. Connect to PostgreSQL Database
+`psql -d database -U  user -W`
+// If you want to connect to a database that is hosted on a different server, use the -h option:
+`psql -h host -d database -U user -W`
+
+//! 2. Change the database connection to a new one
+`\c dbname username`
+// postgres=# \c user_db
+// You are now connected to database "user_db" as user "postgres".
+// user_ab=#
+
+//! 3. List available database
+`\l`
+
+//! 4. List available table
+`\dt`
+
+//! 5. Describe table
+`\d table_name`
+
+//! 6. List available schema
+`\dn`
+
+//! 7. List available function
+`\df`
+
+//! 8. List all views
+`\dv`
+
+//! 10. Execute the previous command
+// To retrieve the current version of PostgreSQL server, you use the version() function as follows:
+`SELECT version();`
+// Output :
+// postgres (PostgreSQL) 9.3.10
+// If you wish to save time by not having to type the preceding command twice, you can use the \g command to do so:
+`\g`
+// The previous command, the SELECT statement, is repeated by psql.
+
+//! 14. Turn on query execution time
+`\timing`
+// The \timing command is used to enable query execution time. This command helps you know the execution time of the query. For eg : 1.495ms for the below example.
+`user_ab=# \timing
+Timing is on.
+user_ab=# select count(*) from film;
+ count
+-------
+  1000
+(1 row)
+
+Time: 1.495 ms
+user_ab=#`
+
+//! 17. Quit psql
+`\q`
+
+
+//! Q.2: What are the Features of PostgreSQL?
+// Ans: PostgreSQL is a powerful, open-source object-relational database system that has a solid reputation in stability, feature robustness, and performance.
