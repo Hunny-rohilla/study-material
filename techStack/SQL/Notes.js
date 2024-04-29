@@ -1,6 +1,7 @@
 //? reference: 
 //? https://www.interviewbit.com/sql-interview-questions/
 //? https://www.postgresqltutorial.com/
+//? https://www.interviewbit.com/blog/postgresql-commands/
 //? https://www.youtube.com/watch?v=85pG_pDkITY
 
 //================================================================
@@ -496,3 +497,12 @@ WHERE first_name LIKE '___%'
 SELECT *   /* Matches first names with exactly four characters */
 FROM students
 WHERE first_name LIKE '____'`
+
+//================================================================
+//## PostgreSQL Interview Questions
+//================================================================
+
+//! 1. What is PostgreSQL?
+// PostgreSQL was first called Postgres and was developed by a team led by Computer Science Professor Michael Stonebraker in 1986. It was developed to help developers build enterprise-level applications by upholding data integrity by making systems fault-tolerant. PostgreSQL is therefore an enterprise-level, flexible, robust, open-source, and object-relational DBMS that supports flexible workloads along with handling concurrent users. It has been consistently supported by the global developer community. Due to its fault-tolerant nature, PostgreSQL has gained widespread popularity among developers
+
+//? https://www.interviewbit.com/blog/postgresql-commands/
