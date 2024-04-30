@@ -746,6 +746,5 @@ user_ab=#`
 //! 17. Quit psql
 `\q`
 
-
 //! Q.2: What are the Features of PostgreSQL?
 // Ans: PostgreSQL is a powerful, open-source object-relational database system that has a solid reputation in stability, feature robustness, and performance.
