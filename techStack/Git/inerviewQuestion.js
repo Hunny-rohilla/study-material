@@ -56,10 +56,3 @@ git config --global user.email "your@email.com"
 `git add <file_name>`
 // - To add the contents of a particular folder, use: 
 `git add /<folder_name>/`
-
-
-// ================================================
-//# Intermediate GIT Interview Questions
-// ================================================
-
-
