@@ -688,7 +688,7 @@ handlePromise();
 
 // 📌 Thus JS is not waiting, call stack is not getting blocked.
 // Moreover in above scenario what if p1 would be taking 10 secs and p2 5 secs -> even
-// though p2 got resolved earlier but JS is sy  nchronous single threaded language so it will
+// though p2 got resolved earlier but JS is sy nchronous single threaded language so it will
 // first wait for p1 to be resolved and then will immediately execute all.
 
 // Error Handling:
@@ -835,6 +835,9 @@ const obj5 = {
   },
 };
 obj.x(); // value of `this` is referring to current object i.e. `obj`
+
+//****************************************************** */
+
 // call, apply & bind methods
 // For detail around call, apply and bind method. Refer here.
 const student = {
