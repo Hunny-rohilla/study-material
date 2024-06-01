@@ -40,10 +40,7 @@ class Child extends Parent {}
 // The super keyword is used to call the constructor of its parent class to access the parent's
 // properties and methods.
 // super.parentMethod( args )
-// super( args ) // calls Parent‘s constru
-// A
-// ctor
-// pna College
+// super( args ) // calls Parent‘s constructor
 // Qs. You are creating a website for your college. Create a class User with 2 properties, name &
 // email. It also has a method called viewData( ) that allows user to view website data.
 // Let‘s Practice

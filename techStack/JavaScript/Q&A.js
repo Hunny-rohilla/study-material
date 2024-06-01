@@ -1,6 +1,5 @@
 // Q1: What is Closure in Javascript?
-// Ans: A function along with reference to its outer environment together forms a closure. Or in other words, A
-// Closure is a combination of a function and its lexical scope bundled together. eg:
+// Ans: A function along with reference to its outer environment together forms a closure. Or in other words, A Closure is a combination of a function and its lexical scope bundled together. eg:
 function outer() {
   var a = 10;
   function inner() {

@@ -130,8 +130,8 @@ console.log(window.b); // 15
 // Temporal Dead Zone : Time since when the let variable was hoisted until it is initialized some value.
 // -------------------
 // ->  So any line till before "let a = 10" is the TDZ for a
-// ->  Since a is not accessible on global, its not accessible in window/this also. window.b or this.b ->
-//     15; But window.a or this.a ->undefined, just like window.x->undefined (x isn't declared anywhere)
+// ->  Since a is not accessible on global, its not accessible in window/this also. window.b or this.b 
+//     But window.a or this.a ->undefined, just like window.x->undefined (x isn't declared anywhere)
 
 // ********************************************************************************
 

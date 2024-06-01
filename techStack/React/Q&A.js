@@ -77,7 +77,6 @@
 
 // 6. **Virtual DOM:**
 //    - **Theory:** The Virtual DOM is a lightweight copy of the real DOM. React uses it to improve efficiency by minimizing direct manipulation of the actual DOM, updating only the necessary parts when state changes.
-//    - **Code:** Not a code concept but understanding the idea is crucial for performance optimization.
 
 // 7. **JSX (JavaScript XML):**
 //    - **Theory:** JSX is a syntax extension for JavaScript recommended by React. It enables writing HTML-like code in JavaScript files, making it easier to describe the UI structure.
@@ -169,7 +168,12 @@ class MyForm extends React.Component {
          return <button onClick={this.handleClick}>Click me</button>;
        }
      }
-     ```// 5. **What is the significance of the `setState` method?** //      Keys help React identify which items have changed, been added, or been removed in a list. This aids in efficient updates to the Virtual DOM. //    - **Answer:** // 4. **Why are keys important when rendering lists in React?**
+     ```
+// 5. **What is the significance of the `setState` method?** 
+//    - **Answer:** 
+//      Keys help React identify which items have changed, been added, or been removed in a list. This aids in efficient updates to the Virtual DOM. 
+
+// 4. **Why are keys important when rendering lists in React?**
 //    - **Answer:**
 //      The `setState` method is used to update the state of a React component. It triggers a re-render and ensures that the updated state is reflected in the UI.
 
@@ -220,7 +224,9 @@ class MyForm extends React.Component {
    function UncontrolledForm() {
      return <input type="text" />;
    }
-   ``` //    - **Answer:** Higher-order components (HOCs) are functions that take a component and return a new component with additional props or behavior. They are used for code reuse, logic abstraction, and enhancing component functionality. // 3. **Explain the concept of higher-order components (HOCs) in React:**
+   ``` 
+// 3. **Explain the concept of higher-order components (HOCs) in React:**
+//    - **Answer:** Higher-order components (HOCs) are functions that take a component and return a new component with additional props or behavior. They are used for code reuse, logic abstraction, and enhancing component functionality. 
 ```jsx
    const withLogger = (WrappedComponent) => {
      return class extends React.Component {
@@ -235,7 +241,9 @@ class MyForm extends React.Component {
    };
 
    const EnhancedComponent = withLogger(MyComponent);
-   ``` //    - **Answer:** `shouldComponentUpdate` is a lifecycle method that allows the developer to control whether a component should re-render or not. It is used for performance optimization by preventing unnecessary re-renders. // 4. **What is the significance of the `shouldComponentUpdate` method?**
+   ```
+// 4. **What is the significance of the `shouldComponentUpdate` method?**
+//    - **Answer:** `shouldComponentUpdate` is a lifecycle method that allows the developer to control whether a component should re-render or not. It is used for performance optimization by preventing unnecessary re-renders. 
 ```jsx
    class MyComponent extends React.Component {
      shouldComponentUpdate(nextProps, nextState) {
@@ -277,8 +285,8 @@ class MyForm extends React.Component {
 
 // 6. **Discuss the differences between state and props in React:**
 //    - **Answer:**
-//      - `State`: Managed within a component and can be modified using `setState`. Used for dynamic data that may change during the component's lifecycle.
-//      - `Props`: External inputs to a component that are passed down from a parent. Props are immutable and are used for data that does not change within the component.
+//    - `State`: Managed within a component and can be modified using `setState`. Used for dynamic data that may change during the component's lifecycle.
+//    - `Props`: External inputs to a component that are passed down from a parent. Props are immutable and are used for data that does not change within the component.
 
 // 7. **How does React support code reusability through components?**
 //    - **Answer:** React promotes code reusability through components by allowing developers to create modular and self-contained units. Components can be reused across different parts of an application or even in different projects.
