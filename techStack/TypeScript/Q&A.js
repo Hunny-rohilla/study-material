@@ -333,3 +333,234 @@ greet("Jane");  // Hello, Jane`
  "include": ["src/**/*"],
  "exclude": ["node_modules", "**/*.spec.ts"]
 }`
+
+// =======================================================================================
+// #Typescript Interview Questions for Experienced
+// =======================================================================================
+
+// ? 1. How to enforce strict null checks in TypeScript?
+// Null pointers often cause unexpected errors in programs. TypeScript helps avoid these errors by enforcing strict null checks. You can enable strict null checks in two ways:
+// - 1. Use the `--strictNullChecks` flag with the TypeScript compiler (`tsc`).
+// - 2. Set the `strictNullChecks` property to `true` in the `tsconfig.json` file.
+
+// ? 2. Does TypeScript support static classes? If not, why?
+// TypeScript doesn’t support static classes, unlike the popular object-oriented programming languages like C# and Java.
+// These languages need static classes because all code, i.e., data and functions, need to be inside a class and cannot exist independently. Static classes provide a way to allow these functions without associating them with any objects.
+// In TypeScript, you can create any data and functions as simple objects without creating a containing class. Hence TypeScript doesn’t need static classes. A singleton class is just a simple object in TypeScript.
+
+// ? 3. What are type assertions in TypeScript?
+// In TypeScript, you might know the type of a variable better than the TypeScript compiler. To tell TypeScript about this specific type, you can use type assertions. This helps TypeScript understand the correct type without guessing.
+// * There are two ways to do type assertions in TypeScript:
+// - 1. Using `as` syntax:
+   ```typescript
+   let value: unknown = "Foo";
+   let len: number = (value as string).length;
+   ```
+// - 2. Using `<type>` syntax:
+   ```typescript
+   let value: unknown = "Foo";
+   let len: number = (<string>value).length;
+   ```
+// Type assertions in TypeScript are similar to typecasting in other programming languages like C# or Java but without any runtime performance cost.
+
+// ? 4. Explain how tuple destructuring works in TypeScript.
+// You can destructure tuple elements by using the assignment operator (=). The destructuring variables get the types of the corresponding tuple elements.  
+```
+let employeeRecord: [string, number] = ["John Doe", 50000];
+let [emp_name, emp_salary] = employeeRecord;
+console.log(``Name: ${emp_name}``);  // "Name: John Doe"
+console.log(``Salary: ${emp_salary}``);  // "Salary: 50000"
+```
+// After destructuring, you can’t assign a value of a different type to the destructured variable. For example,
+
+// ? 5. Explain the tuple types in TypeScript.
+// Tuples are a special type in TypeScript. They are similar to arrays with a fixed number of elements with a known type. However, the types need not be the same.
+// Declare a tuple type and initialize it
+`let values: [string, number] = ["Foo", 15];`
+// Type 'boolean' is not assignable to type 'string'.(2322)
+// Type 'string' is not assignable to type 'number'.(2322)
+`let wrongValues: [string, number] = [true, "hello"];` // Error
+// Since TypeScript 3.0, a tuple can specify one or more optional types using the ? as shown below.
+`let values: [string, number, boolean?] = ["Foo", 15]`
+
+// ? 6. What are type aliases? How do you create one?
+// Type aliases give a new, meaningful name for a type. They don’t create new types but create new names that refer to that type.
+// For example, you can alias a union type to avoid typing all the types everywhere that value is being used.
+`type alphanumeric = string | number;
+let value: alphanumeric = "";
+value = 10;`
+
+// ? 7. What are intersection types?
+// Intersection types let you combine the members of two or more types by using the ‘&’ operator. This allows you to combine existing types to get a single type with all the features you need.
+// The following example creates a new type Supervisor that has the members of types Employee and Manager.
+```
+interface Employee {
+work: () => string;
+}
+
+interface Manager {
+manage: () => string;
+}
+
+type Supervisor = Employee & Manager;
+
+// john can both work and manage
+let john: Supervisor
+```
+
+// ? 8. What are union types in TypeScript?
+// A union type is a special construct in TypeScript that indicates that a value can be one of several types. A vertical bar (|) separates these types.
+// Consider the following example where the variable value belongs to a union type consisting of strings and numbers. The value is initialized to string “Foo”. Because it can only be a string or a number, we can change it to a number later, and the TypeScript compiler doesn’t complain. 
+```
+let value: string | number = "Foo";
+value = 10;  // Okay
+```
+// However, if we try to set the value to a type not included in the union types, we get the following error.
+`value = true;`  // Type 'boolean' is not assignable to type 'string | number'.(2322)
+// Union types allow you to create new types out of existing types. This removes a lot of boilerplate code as you don’t have to create new classes and type hierarchies.
+
+// ? 9. What are anonymous functions? Provide their syntax in TypeScript.
+// An anonymous function is a function without a name. Anonymous functions are typically used as callback functions, i.e., they are passed around to other functions, only to be invoked by the other function at a later point in time. For example,
+```
+setTimeout(function () {
+  console.log('Run after 2 seconds')
+}, 2000);
+```
+// You can invoke an anonymous function as soon as it’s created. It’s called ‘immediately invoked function execution (IIFE)’, For example:
+```
+(function() {
+  console.log('Invoked immediately after creation');
+})();
+```
+
+// ? 10. What are abstract classes? When should you use one?
+// An abstract class is like a blueprint for other classes. You can't create an object directly from an abstract class. Instead, it sets rules that other classes (which extend it) must follow. Unlike interfaces, an abstract class can have some methods with actual code.
+// In the example, there is an abstract class `Writer` with two methods: 
+// - `write()`, which is abstract and has no code.
+// - `greet()`, which is not abstract and has code that prints a greeting.
+
+// Two classes, `FictionWriter` and `RomanceWriter`, extend `Writer` and provide their own versions of the `write()` method.
+```
+abstract class Writer {
+  abstract write(): void;
+
+  greet(): void {
+    console.log("Hello, there. I am a writer.");
+  }
+}
+
+class FictionWriter extends Writer {
+  write(): void {
+    console.log("Writing a fiction.");
+  }
+}
+
+class RomanceWriter extends Writer {
+  write(): void {
+    console.log("Writing a romance novel.");
+  }
+}
+
+const john = new FictionWriter();
+john.greet();  // "Hello, there. I am a writer."
+john.write();  // "Writing a fiction."
+
+const mary = new RomanceWriter();
+mary.greet();  // "Hello, there. I am a writer."
+mary.write();  // "Writing a romance novel."
+```
+// ### Explanation
+// 1. **Abstract Class `Writer`**:
+//    - `write()` method is abstract (no code).
+//    - `greet()` method has code to print "Hello, there. I am a writer."
+// 2. **Classes Extending `Writer`**:
+//    - `FictionWriter` provides code for `write()` to print "Writing a fiction."
+//    - `RomanceWriter` provides code for `write()` to print "Writing a romance novel."
+// 3. **Creating Objects**:
+//    - `john` is an instance of `FictionWriter`, calls `greet()` and `write()`.
+//    - `mary` is an instance of `RomanceWriter`, calls `greet()` and `write()`.
+
+// ? 11. How to make object properties immutable in TypeScript? (hint: readonly)
+// You can make object properties unchangeable (immutable) by using the `readonly` keyword before the property name in TypeScript. This means you can set the property when you create the object, but you cannot change it afterward.
+```
+interface Coordinate {
+  readonly x: number;
+  readonly y: number;
+}
+
+let c: Coordinate = { x: 5, y: 15 };
+c.x = 20; // Error: Cannot assign to 'x' because it is a read-only property.
+```
+// In this example:
+// - The `x` and `y` properties of the `Coordinate` object are marked as `readonly`.
+// - You can set `x` and `y` when you create the object `c`.
+// - After creating the object, trying to change `x` or `y` will result in an error.
+
+// ? 12. What is a type declaration file?
+// When you're working on a TypeScript project, you might use other TypeScript libraries like JQuery to help with common tasks. To make coding easier, these libraries come with files that describe the types and methods they use. These files help your code editor provide suggestions and check for errors.
+// A type declaration file is a special text file with a .d.ts extension. It tells TypeScript about the types and values in the library but doesn't include the actual code. These files don't turn into .js files when you compile your project.
+
+// ? 13. What are triple-slash directives?
+// Triple-slash directives are special single-line comments in TypeScript that use XML tags to give instructions to the compiler.
+// - **Location**: They must be at the top of the file. Only regular comments can come before them.
+// - **Usage**: They help include other files in the compilation or order output files when using certain commands.
+```
+/// <reference path="..." />
+```
+
+// ? 14. Explain the purpose of the ‘in’ operator.
+// The in operator is used to find if a property is in the specified object. It returns true if the property belongs to the object. Otherwise, it returns false.
+```
+const car = { make: 'Hyundai', model: 'Elantra', year: 2017 };
+console.log('model' in car);  // true
+console.log('test' in car);  // false
+```
+
+// ? 15. What are the ‘implements’ clauses in TypeScript?
+// An implements clause is used to check that a class satisfies the contract specified by an interface. If a class implements an interface and doesn’t implement that interface, the TypeScript compiler issues an error.
+`interface Runnable {
+run(): void;
+}
+
+class Job implements Runnable {
+run() {
+  console.log("running the scheduled job!");
+}
+}
+
+// Class 'Task' incorrectly implements interface 'Runnable'.
+// Property 'run' is missing in type 'Task' but required in type 'Runnable'.(2420)
+class Task implements Runnable {
+perform() {
+  console.log("pong!");
+}
+}`
+// A class can implement more than one interface. In this case, the class has to specify all the contracts of those interfaces.
+
+// ? 16. What are string literal types?
+// In TypeScript, you can refer to specific strings and numbers as types, which helps in defining stricter type constraints for variables.
+```
+let foo: "bar" = "bar"; // 'foo' can only be "bar"
+
+// OK
+foo = "bar"; // This is fine
+
+// Error: Type '"baz"' is not assignable to type '"bar"'.
+foo = "baz"; // This will give an error because 'foo' can only be "bar"
+```
+// ### Combining String Literal Types into Unions:
+// String literal types can be combined into unions to specify multiple possible string values for a variable, similar to enums. This is especially useful for function parameters.
+```
+function greet(name: string, greeting: "hi" | "hello" | "hola") {
+  console.log(``${greeting}, ${name}!``);
+}
+
+greet("John", "hello"); // This is fine
+
+// Error: Argument of type '"Howdy?"' is not assignable to parameter of type '"hi" | "hello" | "hola"'.
+greet("Mary", "Howdy?"); // This will give an error because "Howdy?" is not an allowed greeting
+```
+// ### Benefits:
+// - **Type Safety:** Ensures variables and function parameters have specific and expected values.
+// - **Spell-Check:** Helps avoid typos in string values by restricting the possible values.
+
