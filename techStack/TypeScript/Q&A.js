@@ -1,3 +1,5 @@
+// **reference: https://www.interviewbit.com/typescript-interview-questions/
+
 // TypeScript is an open-source language developed by Anders Hejlsberg at Microsoft. It’s a statically typed superset of JavaScript that compiles to plain JavaScript. It runs on any browser, host, and operating system. That means all valid JavaScript code is also TypeScript code. It offers advanced features such as IntelliSense, code completion, safe refactorings, etc. 
 
 //# Why TypeScript?
@@ -564,3 +566,255 @@ greet("Mary", "Howdy?"); // This will give an error because "Howdy?" is not an a
 // - **Type Safety:** Ensures variables and function parameters have specific and expected values.
 // - **Spell-Check:** Helps avoid typos in string values by restricting the possible values.
 
+// ? 17. What are template literal types?
+// Template literal types in TypeScript are similar to string literal types, but more flexible. They let you combine literal types to create new string literal types. For example, if you have a type `Point` defined as `"GraphPoint"`, you can create a new type `Shape` by combining `Point` with another string.
+```
+type Point = "GraphPoint";
+
+// Creates a new type "Grid GraphPoint"
+type Shape = ``Grid ${Point}``;
+```
+// Template literal types can also generate multiple strings using unions. This helps create a set of all possible string literals that each union member can represent.
+```
+type Color = "green" | "yellow";
+type Quantity = "five" | "six";
+
+// Creates a new type "five item" | "six item" | "green item" | "yellow item"
+type ItemOne = ``${Quantity | Color} item``;
+```
+// In simple terms, template literal types let you mix and match string literal types to make new ones, and they can also handle multiple options using unions.
+
+// ? 18. Explain the concept of inheritance in TypeScript.
+// Inheritance allows a class to use and change the behavior of another class. The class that inherits is called the derived class, and the class being inherited from is called the base class.
+// In TypeScript, a class can extend only one other class using the `extends` keyword.
+```
+class Rectangle {
+  length: number;
+  breadth: number;
+
+  constructor(length: number, breadth: number) {
+    this.length = length;
+    this.breadth = breadth;
+  }
+
+  area(): number {
+    return this.length * this.breadth;
+  }
+}
+
+class Square extends Rectangle {
+  constructor(side: number) {
+    super(side, side);
+  }
+
+  volume() {
+    return "Square doesn't have a volume!";
+  }
+}
+
+const sq = new Square(10);
+
+console.log(sq.area());  // Output: 100
+console.log(sq.volume());  // Output: "Square doesn't have a volume!"
+```
+// ### Explanation of the Code
+// - 1. **Rectangle Class**: Defines a rectangle with properties `length` and `breadth` and a method `area()` that calculates the area.
+// - 2. **Square Class**: Extends the `Rectangle` class. It uses the `super()` function to call the `Rectangle` constructor with equal length and breadth (side).
+// - 3. **Usage**: Creates an instance of `Square` with a side length of 10, then calls the `area()` method (inherited from `Rectangle`) and the `volume()` method (specific to `Square`).
+
+// ? 19. What are conditional types? How do you create them?
+// A conditional type allows you to dynamically select one of two possible types based on a condition. The condition is expressed as a type relationship test.
+`C extends B ? TypeX : TypeY`
+// Here, if type C extends B, the value of the above type is TypeX. Otherwise, it is TypeY.
+
+// ? 20. What is the Function type in TypeScript?
+// Function is a global type in TypeScript. It has properties like bind, call, and apply, along with the other properties present on all function values.
+`function perform(fn: Function) {
+fn(10);
+}`
+// You can always call a value of the Function type, and it returns a value of ‘any’ type
+
+// ? 21. List some of the utility types provided by TypeScript and explain their usage.
+// In TypeScript, utility types are pre-built types that help you transform other types in common ways. They are globally available. Here are some key utility types:
+
+// - 1. **Partial<Type>**: This makes all properties of a given type optional.
+// - 2. **Required<Type>**: This makes all properties of a given type required.
+// - 3. **Readonly<Type>**: This makes all properties of a given type read-only (they cannot be changed after being set).
+// - 4. **Record<Keys, Type>**: This constructs an object type where the keys are of a specific type, and the values are of another specific type.
+```
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+// Partial: all properties are optional
+const partialUser: Partial<User> = {
+  name: "Alice"
+};
+
+// Required: all properties are required
+const requiredUser: Required<Partial<User>> = {
+  id: 1,
+  name: "Alice",
+  age: 25
+};
+
+// Readonly: all properties are readonly
+const readonlyUser: Readonly<User> = {
+  id: 1,
+  name: "Alice",
+  age: 25
+};
+
+// This will give an error because readonly properties cannot be modified
+// readonlyUser.name = "Bob"; 
+
+// Record: constructs an object type with specific keys and values
+const userRoles: Record<string, User> = {
+  admin: { id: 1, name: "Alice", age: 25 },
+  guest: { id: 2, name: "Bob", age: 22 }
+};
+```
+// - **Partial**: Useful when you want to create an object where some properties might not be present.
+// - **Required**: Useful when you need to ensure that all properties of an object are provided.
+// - **Readonly**: Useful when you want to prevent modification of an object's properties.
+// - **Record**: Useful when you want to create an object type with a specific structure for keys and values.
+
+// ? 22. Explain the various ways to control member visibility in TypeScript.
+// TypeScript provides three keywords to control the visibility of class members, such as properties or methods.
+// - public: You can access a public member anywhere outside the class. All class members are public by default. 
+// - protected: A protected member is visible only to the subclasses of the class containing that member. Outside code that doesn’t extend the container class can’t access a protected member. 
+// - private: A private member is only visible inside the class. No outside code can access the private members of a class.
+
+// ? 23. Explain the different variants of the for loop in TypeScript.
+// TypeScript provides the following three ways to loop over collections.
+// ‘for’ loop
+// let values = [10, "foo", true];
+`for(let i=0; i<values.length; i++) {
+  console.log(values[i]);  // 10, "foo", true
+}`
+// ‘forEach’ function
+`let values = [10, "foo", true];
+values.forEach(val => {
+    console.log(val);  // 10, "foo", true
+})`
+// ‘for..of’ statement
+`let values = [10, "foo", true];
+for (let val of values) {
+console.log(val); // 10, "foo", true
+}`
+
+// ? 24. Explain the symbol type in TypeScript.
+// Symbols were introduced in ES6 and are supported by TypeScript. Similar to numbers and strings, symbols are primitive types. You can use Symbols to create unique properties for objects.
+// You can create symbol values by calling the Symbol() constructor, optionally providing a string key.
+`let foo = Symbol();
+let bar = Symbol("bar"); // optional string key`
+// A key characteristic of symbols is that they are unique and immutable.
+`let foo = Symbol("foo");
+let newFoo = Symbol("foo");
+let areEqual = foo === newFoo;
+console.log(areEqual);  // false, symbols are unique`
+
+// ? 25. Explain how optional chaining works in TypeScript.
+// Optional chaining allows you to access properties and call methods on them in a chain-like fashion. You can do this using the ‘?.’ operator.
+// TypeScript immediately stops running some expression if it runs into a ‘null’ or ‘undefined’ value and returns ‘undefined’ for the entire expression chain.
+// Using optional chaining, the following expression
+`let x = foo === null || foo === undefined ? undefined : foo.bar.baz();`
+// can be expressed as:
+`let x = foo?.bar.baz();`
+
+// ? 26. Provide the TypeScript syntax to create function overloads.
+// Function overloading allows us to define multiple functions with the same name, as long as their number or types of parameters are different.
+// Here’s an example of function overloading in TypeScript:
+// 1. We define two versions (overloads) of the function `buildDate`.
+//     - One version takes a single number as a parameter (a timestamp).
+//     - The other version takes three numbers as parameters (month, day, and year).
+// 2. The actual function implementation combines these two overloads. Inside this implementation:
+//     - If three numbers are provided, it creates a `Date` object using the month, day, and year.
+//     - If only one number is provided, it creates a `Date` object using that number as a timestamp.
+```
+function buildDate(timestamp: number): Date;
+function buildDate(m: number, d: number, y: number): Date;
+function buildDate(mOrTimestamp: number, d?: number, y?: number): Date {
+  if (d !== undefined && y !== undefined) {
+    return new Date(y, mOrTimestamp, d);
+  } else {
+    return new Date(mOrTimestamp);
+  }
+}
+
+// Usage examples:
+const d1 = buildDate(87654321);  // Calls the overload with a single number (timestamp)
+const d2 = buildDate(2, 2, 2);    // Calls the overload with three numbers (month, day, year)
+```
+// - `buildDate(87654321)` creates a date from the given timestamp.
+// - `buildDate(2, 2, 2)` creates a date for February 2, 0002.
+
+// ? 27. What is meant by type inference?
+// TypeScript can infer the type of a variable when you don’t provide an explicit type. This is known as type inference. This is usually done when the variables or parameters are initialized during the declaration.
+// For example, TypeScript knows that the variable foo is a string, even though we don’t mention string as a type.
+`let foo = "this is a string";
+console.log(typeof foo);`  // "string"
+
+// ? 28. What is meant by contextual typing?
+// When the TypeScript compiler figures out the type of a variable based on where it is used, it's called contextual typing.
+// In the example below, TypeScript uses the type information of the `Window.onmousedown` function to understand what type the `e` parameter should be. This allows TypeScript to know that `e` has a `button` property, but not a `foo` property.
+```
+window.onmousedown = function (e) {
+  console.log(e.button); // This is OK because e.button exists
+  console.log(e.foo);    // This will cause an error because e.foo does not exist
+};
+```
+// ### Explanation
+// - `window.onmousedown` expects a function with an event parameter `e`.
+// - TypeScript knows the type of `e` because `window.onmousedown` is a well-defined browser event handler.
+// - The `e` parameter has properties like `button`, which are part of the event object.
+// - If you try to access `e.foo`, TypeScript throws an error because `foo` is not a known property of the event object.
+
+
+// ? 29. What is the purpose of noImplicitAny?
+// Usually, when we don’t provide any type on a variable, TypeScript assumes ‘any’ type. For example, TypeScript compiles the following code, assuming the parameter ‘s’ is of any type. It works as long as the caller passes a string.
+`function parse(s) {
+console.log(s.split(' '));
+}
+parse("Hello world");`  // ["Hello", "world"]
+// However, the code breaks down as soon as we pass a number or other type than a string that doesn’t have a split() method on it. For example,
+`function parse(s) {
+console.log(s.split(' '));  // [ERR]: s.split is not a function
+}
+parse(10);` 
+// noImplicitAny is a compiler option that you set in the tsconfig.json file. It forces the TypeScript compiler to raise an error whenever it infers a variable is of any type. This prevents us from accidentally causing similar errors.
+// Parameter 's' implicitly has an 'any' type.(7006)
+`function parse(s) {
+console.log(s.split(' '));  // [ERR]: s.split is not a function
+}`
+
+// ? 30. What is an interface?
+// An interface in TypeScript defines a contract for the structure of an object, specifying what properties it should have and what types those properties should be. This is also known as "duck typing," meaning if an object looks like a certain type and behaves like that type, it is considered that type.
+// *Here's how you create and use an interface in TypeScript:
+// - 1. **Define an Interface**: Describe the structure of an object.
+// - 2. **Implement the Interface**: Create an object that adheres to this structure.
+// - 3. **Use the Interface**: Use the object in a function that expects this structure.
+```
+// Define the interface
+interface Employee {
+    name: string;
+    salary: number;
+}
+
+// Function that uses the interface
+function process(employee: Employee) {
+    console.log(``${employee.name}'s salary = ${employee.salary}``);
+}
+
+// Create an object that adheres to the interface
+let john: Employee = {
+    name: "John Doe",
+    salary: 150000
+}
+
+// Call the function with the object
+process(john);  // Output: "John Doe's salary = 150000"
+```
+// **Summary**: An interface in TypeScript ensures that objects have a specific shape. You define the interface, create objects that match this shape, and use these objects in your functions.
