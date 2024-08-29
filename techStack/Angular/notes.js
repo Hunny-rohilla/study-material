@@ -4,6 +4,9 @@
 // - https://www.geeksforgeeks.org/angular-cheat-sheet-a-basic-guide-to-angular/
 // - https://www.interviewbit.com/angular-cheat-sheet/
 
+// *Video:
+// - https://www.youtube.com/watch?v=FgB6Hrzw7z0
+
 // # BOOTSTRAPPING
 // Bootstraps the application, using the root component from the specified NgModule.
 `import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -170,3 +173,51 @@ class MyService() {}`
 // First result of the query in the component view is binded to a property of the class
 `@ViewChildren(myPredicate) myChildComponents;`	
 // Results of the query in the component view is binded to a property of the class
+
+// *4. Angular Directives
+// An element or component can be assigned an attribute directive or a structural directive to modify its behaviour. An attribute directive is an attribute that is associated with an element or component. A structural directive is a directive that modifies the structure of an element or component.
+
+// - 1. Attribute Directives: An element, component, or other directive can be decorated with an attribute directive. Angular exports the following attribute directives:
+// # NgClass	
+// A CSS class can be added or removed via NgClass.	
+`<div [ngClass]="isInterviewBitSpecial ? 'Yes' : ''">This company is special</div>`
+// # NgStyle	
+// HTML styles can be added or removed via NgStyle..	
+`<div [ngStyle]="{ 'font-height': 3 +3 === 6 ? 'light'   : 'normal', }"> This div is light. </div>`
+// # NgModel	
+// Two-way data binding to an HTML form element can be added via NgModel..	
+`<input [(ngModel)]="interviewBit">`
+
+// - 2. Structural Directives: Elements that are added or removed from the DOM in Angular's structure are referred to as structural directives. Here are the most prevalent structural directives in Angular:
+// # NgIf	
+// The Angular conditional NgIf directive conditionalizes the value of NgIf. If the NgIf directive's value is false, Angular removes the element.
+// # NgFor	
+// The Angular NgFor directive loops through an array or list. It comes in two types: The ng-for directive, which loops through a ul> or ol> element; and the ng-for-each directive, which iterates through a collection.
+// # NgSwitch	
+// NgSwitch is a structural directive, meaning that it should be assigned a particular value depending on the context in which it is used.
+// # NgSwitchCase	
+// A NgSwitchCase structure stores a matched value for NgSwitch, and it can also be used to refer to a matched value.
+// #NgSwitchDefault	
+// When the expression does not match any of the specified values, NgSwitchDefault performs the function.
+
+
+// *5. Pipes
+// Templates typically use pipes to change content but it does not directly affect data. For example:
+// # DatePipe	                    
+// Locale-specific date formatting is performed.	
+`{{ value_expr | date: 'long'}}`
+// # UpperCasePipe	
+// Given text is transformed into upper case text.	
+`{{ 'InterviewBit'' | uppercase }}`
+// # LowerCasePipe	
+// Given text is transformed into lower case text.	
+`{{ 'InterviewBit' | lowercase }}`
+// # CurrencyPipe	
+// Given number is transformed into a currency string.	
+`{{ 4.4324 | currency:'USD' }}`
+// #DecimalPipe	
+// Given number is transformed into a decimal point string.	
+`{{ 1.1334354654 | number }}`
+// #PercentPipe	
+// Given number is transformed into a percentage point string.	
+`{{ 0.245 | percent }}`
