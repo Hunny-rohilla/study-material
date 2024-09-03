@@ -20,8 +20,7 @@ let myObj = new MyClass();
 // --------------------------------------------------------------
 // Classes in JS
 // Constructor( ) method is :
-// automatically invoked by new
-// initializes object
+// automatically invoked by new initializes object
 class MyClass {
   constructor() {}
   myMethod() {}
@@ -32,13 +31,12 @@ class MyClass {
 class Parent {}
 class Child extends Parent {}
 
-// *If Child & Parent have same method, child’s
-// method will be used. [Method Overriding]
+// *If Child & Parent have same method, child’s method will be used. [Method Overriding]
 
 // --------------------------------------------------------------
 // super Keyword
-// The super keyword is used to call the constructor of its parent class to access the parent's
-// properties and methods.
+// ================
+// The super keyword is used to call the constructor of its parent class to access the parent's properties and methods.
 // super.parentMethod( args )
 // super( args ) // calls Parent‘s constructor
 // Qs. You are creating a website for your college. Create a class User with 2 properties, name &
