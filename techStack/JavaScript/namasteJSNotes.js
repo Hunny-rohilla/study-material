@@ -149,7 +149,7 @@ console.log(b); // Uncaught ReferenceError: b is not defined
 //  * In the BLOCK SCOPE; we get b and c inside it initialized as *undefined* as a part of
 // hoisting (in a seperate memory space called **block**)
 //  * While, a is stored inside a GLOBAL scope.
-//  * Thus we say, *let* and *const* are BLOCK SCOPED. They are stored in a separate mem
+//  * Thus we say, *let* and *const* are BLOCK SCOPED. They are stored in a separate memory.
 // space which is reserved for this block. Also, they can't be accessed outside this block.
 // But var a can be accessed anywhere as it is in global scope. Thus, we can't access them outside the Block.
 
@@ -309,12 +309,12 @@ x(function y() {
 // ********************************************************************************
 
 // Episode 15 : Asynchronous JavaScript & EVENT LOOP from scratch
-// Note: Call stack will execeute any execeution context which enters it. Time, tide and JS waits for none.
+// Note: Call stack will execute any execution context which enters it. Time, tide and JS waits for none.
 // TLDR; Call stack has no timer
 
 // Event Loops and Callback Queue:
 
-// Behaviour of fetch (Microtask Queue?)
+// Behavior of fetch (Microtask Queue?)
 // Let's observe the code below and try to understand
 console.log("Start"); // this calls the console web api (through window) which in turn actually modifies values in console.
 setTimeout(function cbT() {
@@ -325,9 +325,9 @@ fetch("https://api.netflix.com").then(function cbF() {
 }); // take 2 seconds to bring response
 // millions lines of code
 console.log("End");
-// Code Explaination:
+// Code Explanation:
 // * Same steps for everything before fetch() in above code.
-// * fetch registers cbF into webapi environment along with existing cbT.
+// * fetch registers cbF into webApi environment along with existing cbT.
 // * cbT is waiting for 5000ms to end so that it can be put inside callback queue. cbF is
 // waiting for data to be returned from Netflix servers gonna take 2 seconds.
 // * After this millions of lines of code is running, by the time millions line of code will
@@ -338,9 +338,9 @@ console.log("End");
 // * Also after expiration of timer, cbT is ready to execute in Callback Queue.
 // * Microtask Queue is exactly same as Callback Queue, but it has higher priority. Functions
 // in Microtask Queue are executed earlier than Callback Queue.
-// * In console, first Start and End are printed in console. First cbF goes in callstack and
-// "CB Netflix" is printed. cbF popped from callstack. Next cbT is removed from callback
-// Queue, put in Call Stack, "CB Timeout" is printed, and cbT removed from callstack.
+// * In console, first Start and End are printed in console. First cbF goes in callStack and
+// "CB Netflix" is printed. cbF popped from callStack. Next cbT is removed from callback
+// Queue, put in Call Stack, "CB Timeout" is printed, and cbT removed from callStack.
 
 // Are only asynchronous web api callbacks are registered in web api environment? - YES, the
 // synchronous callback functions like what we pass inside map, filter and reduce aren't registered in the
@@ -400,8 +400,7 @@ console.log(radiusArr.calculate(area));
 
 // Episode 19 : map, filter & reduce
 // Map function
-// It is basically used to transform a array. The map() method creates a new array with the results of calling a
-// function for every array element.
+// It is basically used to transform a array. The map() method creates a new array with the results of calling a function for every array element.
 
 // Convert array elements to binary
 const arr = [5, 1, 3, 2, 6];
@@ -602,7 +601,7 @@ async function handlePromise() {
   console.log(val2);
 }
 handlePromise();
-// In above code example, will our program wait for 2 time or will it execute parallely.
+// In above code example, will our program wait for 2 time or will it execute parallel.
 //📌 `Hi` printed instantly -> now code will wait for 3 secs -> After 3 secs both promises
 //  will be resolved so ('Hello There!' 'Promise resolved value!!' 'Hello There! 2' 'Promise
 //  resolved value!!') will get printed immediately.

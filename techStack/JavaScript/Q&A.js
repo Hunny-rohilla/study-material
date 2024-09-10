@@ -7,7 +7,7 @@ function outer() {
   } // inner forms a closure with outer
   return inner;
 }
-outer()(); // 10 // over here first `()` will return inner function and then using secong `()` to call inner function
+outer()(); // 10 // over here first `()` will return inner function and then using second `()` to call inner function
 
 // ----------------------------------------------
 
@@ -197,7 +197,8 @@ console.log(z); // Throws ReferenceError - z is undeclared
     console.log('Child clicked');
   });
 </script> */}
-// Clicking the button triggers both the child and parent click events in a bubbling fashion.
+// Clicking the button triggers both the child and parent click events in a bubbling fashion. Event bubbling propagates events from innermost elements to the outermost element.
+// event.stopPropagation(); // stop event bubbling
 
 // 26. How does JavaScript handle asynchronous code execution using the event loop?
 // JavaScript uses an event loop to handle asynchronous operations. Callbacks, promises, and async/await syntax all leverage the event loop.

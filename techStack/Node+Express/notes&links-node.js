@@ -32,7 +32,7 @@ path.resolve("folder1", "folder2", "app.js"); //output = ../../../folder1/folder
 
 // ### Node.js Overview:
 
-// **Node.js** is a JavaScript runtime built on the V8 JavaScript engine. It allows developers to run JavaScript code server-side, enabling the development of scalable and high-performance network applications. Key features include non-blocking I/O and an event-driven architecture.
+// **Node.js** is a JavaScript runtime environment built on the V8 JavaScript engine. It allows developers to run JavaScript code server-side, enabling the development of scalable and high-performance network applications. Key features include non-blocking I/O and an event-driven architecture.
 
 // ### Important Concepts:
 
@@ -50,7 +50,6 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 // 2. **Modules:**
 //    - **Theory:** Node.js uses a modular system for organizing code. Modules encapsulate code, and `require` is used to include modules. Core modules, third-party modules, and user-defined modules are common.
 //    - **Code:**
-javascript;
 // Importing a core module
 const fs = require("fs");
 
