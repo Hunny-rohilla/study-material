@@ -1,0 +1,12 @@
+{
+  "name": "User",
+  "balance": 4900,
+  "transactions": [
+    "Deposited ₹100",
+    "Deposited ₹277",
+    "Deposited ₹1000",
+    "Deposited ₹1200",
+    "Deposited ₹2400",
+    "Withdrew ₹77"
+  ]
+}
